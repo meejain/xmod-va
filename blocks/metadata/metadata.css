@@ -1,0 +1,5 @@
+/* Metadata block should not be visible */
+.metadata-wrapper,
+.metadata {
+  display: none !important;
+}

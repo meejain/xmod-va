@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-va-banner",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-01-29T18:05:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.va.gov/health/",
+    "originPage": "VA Health homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "standard",
+    "purpose": "image-text-banner",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "image + heading + paragraph + link",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "policy banners with icons",
+      "feature sections with images",
+      "call-to-action sections"
+    ],
+    "notSuitableFor": [
+      "full-width hero sections",
+      "card grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/health/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-01-29T18:05:00.000Z"
+  }
+}

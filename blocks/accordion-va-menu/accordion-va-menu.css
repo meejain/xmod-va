@@ -1,0 +1,327 @@
+/* VA Menu Accordion - Left sidebar navigation style */
+/* Works with raw HTML structure (no JS decoration required) */
+
+/* VA Design System Colors */
+.accordion-va-menu {
+  --va-menu-blue: rgb(0, 49, 97);
+  --va-menu-blue-hover: rgb(0, 94, 162);
+  --va-menu-blue-dark: rgb(22, 46, 81);
+  --va-menu-white: #fff;
+  --va-menu-gray: #f0f0f0;
+  --va-menu-border: rgba(255, 255, 255, 0.3);
+}
+
+.accordion-va-menu {
+  background-color: var(--va-menu-blue);
+  max-width: 300px;
+  border-radius: 0;
+}
+
+/* Each direct child div is a menu item row */
+.accordion-va-menu > div {
+  border-bottom: 1px solid var(--va-menu-border);
+}
+
+.accordion-va-menu > div:last-child {
+  border-bottom: none;
+}
+
+/* First cell - the menu label/title */
+.accordion-va-menu > div > div:first-child {
+  position: relative;
+  padding: 14px 40px 14px 16px;
+  cursor: pointer;
+  background-color: var(--va-menu-blue);
+  color: var(--va-menu-white);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: background-color 0.2s;
+}
+
+.accordion-va-menu > div > div:first-child p {
+  margin: 0;
+  color: var(--va-menu-white);
+}
+
+.accordion-va-menu > div > div:first-child:hover {
+  background-color: var(--va-menu-blue-hover);
+}
+
+/* Chevron arrow on menu labels */
+.accordion-va-menu > div > div:first-child::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--va-menu-white);
+  border-width: 0 2px 2px 0;
+  transition: transform 0.2s;
+}
+
+/* Second cell - the content (links) */
+.accordion-va-menu > div > div:last-child {
+  padding: 0;
+  background-color: var(--va-menu-blue-dark);
+  display: none; /* Hidden by default, shown on hover/focus */
+}
+
+/* Show content on hover */
+.accordion-va-menu > div:hover > div:last-child,
+.accordion-va-menu > div:focus-within > div:last-child {
+  display: block;
+}
+
+/* Rotate chevron when content is shown */
+.accordion-va-menu > div:hover > div:first-child::after,
+.accordion-va-menu > div:focus-within > div:first-child::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+
+/* Update first cell background when hovered */
+.accordion-va-menu > div:hover > div:first-child,
+.accordion-va-menu > div:focus-within > div:first-child {
+  background-color: var(--va-menu-blue-hover);
+}
+
+/* Links list styling */
+.accordion-va-menu > div > div:last-child ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-va-menu > div > div:last-child li {
+  margin: 0;
+  border-bottom: 1px solid var(--va-menu-border);
+}
+
+.accordion-va-menu > div > div:last-child li:last-child {
+  border-bottom: none;
+}
+
+.accordion-va-menu > div > div:last-child a {
+  display: block;
+  padding: 10px 16px 10px 28px;
+  color: var(--va-menu-white);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+.accordion-va-menu > div > div:last-child a:hover {
+  background-color: var(--va-menu-blue-hover);
+  text-decoration: underline;
+}
+
+/* ===== Decorated accordion styles (when JS runs) ===== */
+
+.accordion-va-menu details.accordion-va-menu-item {
+  border: none;
+  border-bottom: 1px solid var(--va-menu-border);
+  margin: 0;
+}
+
+.accordion-va-menu details.accordion-va-menu-item + details.accordion-va-menu-item {
+  margin-top: 0;
+}
+
+.accordion-va-menu details.accordion-va-menu-item:last-child {
+  border-bottom: none;
+}
+
+/* Summary/Label styling */
+.accordion-va-menu details summary.accordion-va-menu-item-label {
+  position: relative;
+  padding: 14px 40px 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  background-color: var(--va-menu-blue);
+  color: var(--va-menu-white);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: background-color 0.2s;
+}
+
+.accordion-va-menu details summary.accordion-va-menu-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-va-menu details summary.accordion-va-menu-item-label::marker {
+  display: none;
+  content: '';
+}
+
+.accordion-va-menu details[open] summary.accordion-va-menu-item-label {
+  background-color: var(--va-menu-blue-hover);
+}
+
+.accordion-va-menu details summary.accordion-va-menu-item-label:hover,
+.accordion-va-menu details summary.accordion-va-menu-item-label:focus {
+  background-color: var(--va-menu-blue-hover);
+}
+
+/* Chevron arrow */
+.accordion-va-menu details summary.accordion-va-menu-item-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--va-menu-white);
+  border-width: 0 2px 2px 0;
+  transition: transform 0.2s;
+}
+
+.accordion-va-menu details[open] summary.accordion-va-menu-item-label::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+
+/* Body content styling */
+.accordion-va-menu details .accordion-va-menu-item-body {
+  padding: 0;
+  background-color: var(--va-menu-blue-dark);
+}
+
+.accordion-va-menu details[open] .accordion-va-menu-item-body {
+  border-top: none;
+}
+
+.accordion-va-menu details .accordion-va-menu-item-body p {
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-va-menu details .accordion-va-menu-item-body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-va-menu details .accordion-va-menu-item-body li {
+  margin: 0;
+  border-bottom: 1px solid var(--va-menu-border);
+}
+
+.accordion-va-menu details .accordion-va-menu-item-body li:last-child {
+  border-bottom: none;
+}
+
+.accordion-va-menu details .accordion-va-menu-item-body a {
+  display: block;
+  padding: 10px 16px 10px 28px;
+  color: var(--va-menu-white);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+.accordion-va-menu details .accordion-va-menu-item-body a:hover {
+  background-color: var(--va-menu-blue-hover);
+  text-decoration: underline;
+}
+
+/* ===== Nested Accordion Styles (Level 2 Sub-accordions) ===== */
+
+.accordion-va-menu li.accordion-va-menu-has-nested {
+  padding: 0;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested {
+  border: none;
+  margin: 0;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested summary.accordion-va-menu-nested-label {
+  position: relative;
+  display: block;
+  padding: 10px 40px 10px 28px;
+  cursor: pointer;
+  list-style: none;
+  background-color: var(--va-menu-blue-dark);
+  color: var(--va-menu-white);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested summary.accordion-va-menu-nested-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested summary.accordion-va-menu-nested-label::marker {
+  display: none;
+  content: '';
+}
+
+/* Nested chevron arrow */
+.accordion-va-menu details.accordion-va-menu-nested summary.accordion-va-menu-nested-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  border: 2px solid var(--va-menu-white);
+  border-width: 0 2px 2px 0;
+  transition: transform 0.2s;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested[open] summary.accordion-va-menu-nested-label::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+
+.accordion-va-menu details.accordion-va-menu-nested summary.accordion-va-menu-nested-label:hover,
+.accordion-va-menu details.accordion-va-menu-nested[open] summary.accordion-va-menu-nested-label {
+  background-color: var(--va-menu-blue-hover);
+}
+
+/* Nested body content */
+.accordion-va-menu details.accordion-va-menu-nested .accordion-va-menu-nested-body {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.accordion-va-menu details.accordion-va-menu-nested .accordion-va-menu-nested-body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested .accordion-va-menu-nested-body li {
+  margin: 0;
+  border-bottom: 1px solid var(--va-menu-border);
+}
+
+.accordion-va-menu details.accordion-va-menu-nested .accordion-va-menu-nested-body li:last-child {
+  border-bottom: none;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested .accordion-va-menu-nested-body a {
+  display: block;
+  padding: 8px 16px 8px 42px;
+  color: var(--va-menu-white);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.accordion-va-menu details.accordion-va-menu-nested .accordion-va-menu-nested-body a:hover {
+  background-color: var(--va-menu-blue-hover);
+  text-decoration: underline;
+}
+
+/* Level 3 nested items - even deeper indentation */
+.accordion-va-menu details.accordion-va-menu-level-3 summary.accordion-va-menu-nested-label {
+  padding-left: 42px;
+}
+
+.accordion-va-menu details.accordion-va-menu-level-3 .accordion-va-menu-nested-body a {
+  padding-left: 56px;
+}

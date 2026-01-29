@@ -1,0 +1,163 @@
+/* VA Sidebar Columns - Connect with VHA + Resources layout */
+
+/* VA Design System Colors */
+.columns-va-sidebar {
+  --va-sidebar-bg: #f0f0f0;
+  --va-sidebar-border: #ddd;
+  --va-sidebar-text: #333;
+  --va-sidebar-link: #004795;
+  --va-sidebar-heading: #003366;
+}
+
+.columns-va-sidebar {
+  background-color: var(--va-sidebar-bg);
+  padding: 24px;
+  margin: 32px 0;
+}
+
+.columns-va-sidebar > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Stack vertically - Resources below Connect with VHA */
+.columns-va-sidebar > div > div:first-child {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--va-sidebar-border);
+}
+
+.columns-va-sidebar > div > div:last-child {
+  padding-top: 4px;
+}
+
+/* Headings */
+.columns-va-sidebar h3,
+.columns-va-sidebar h4 {
+  color: var(--va-sidebar-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Social media icons */
+.columns-va-sidebar .va-sidebar-connect p {
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.columns-va-sidebar a.va-sidebar-social-link {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+}
+
+.columns-va-sidebar a.va-sidebar-social-link img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: opacity 0.2s;
+}
+
+.columns-va-sidebar a.va-sidebar-social-link:hover img {
+  opacity: 0.8;
+}
+
+/* Contact info */
+.columns-va-sidebar .va-sidebar-connect strong {
+  font-weight: 600;
+  color: var(--va-sidebar-text);
+}
+
+/* Resources list */
+.columns-va-sidebar ul.va-sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.columns-va-sidebar ul.va-sidebar-list li {
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--va-sidebar-border);
+}
+
+.columns-va-sidebar ul.va-sidebar-list li:last-child {
+  border-bottom: none;
+}
+
+.columns-va-sidebar ul.va-sidebar-list a {
+  color: var(--va-sidebar-link);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.columns-va-sidebar ul.va-sidebar-list a:hover {
+  text-decoration: underline;
+}
+
+/* Regular links */
+.columns-va-sidebar a:not(.va-sidebar-social-link) {
+  color: var(--va-sidebar-link);
+  text-decoration: none;
+}
+
+.columns-va-sidebar a:not(.va-sidebar-social-link):hover {
+  text-decoration: underline;
+}
+
+/* Social media icon links - styled as colored buttons */
+.columns-va-sidebar p a[href*="facebook"],
+.columns-va-sidebar p a[href*="twitter"],
+.columns-va-sidebar p a[href*="x.com"],
+.columns-va-sidebar p a[href*="instagram"],
+.columns-va-sidebar p a[href*="youtube"],
+.columns-va-sidebar p a[href*="flickr"],
+.columns-va-sidebar p a[href*="blogs.va.gov"] {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px 4px 4px 0;
+  border-radius: 4px;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.columns-va-sidebar p a[href*="facebook"] {
+  background-color: #1877f2;
+}
+
+.columns-va-sidebar p a[href*="twitter"],
+.columns-va-sidebar p a[href*="x.com"] {
+  background-color: #000;
+}
+
+.columns-va-sidebar p a[href*="instagram"] {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.columns-va-sidebar p a[href*="youtube"] {
+  background-color: #ff0000;
+}
+
+.columns-va-sidebar p a[href*="flickr"] {
+  background-color: #0063dc;
+}
+
+.columns-va-sidebar p a[href*="blogs.va.gov"] {
+  background-color: #003366;
+}
+
+.columns-va-sidebar p a[href*="facebook"]:hover,
+.columns-va-sidebar p a[href*="twitter"]:hover,
+.columns-va-sidebar p a[href*="x.com"]:hover,
+.columns-va-sidebar p a[href*="instagram"]:hover,
+.columns-va-sidebar p a[href*="youtube"]:hover,
+.columns-va-sidebar p a[href*="flickr"]:hover,
+.columns-va-sidebar p a[href*="blogs.va.gov"]:hover {
+  opacity: 0.85;
+  text-decoration: none !important;
+}

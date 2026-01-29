@@ -1,0 +1,33 @@
+.columns-va-banner > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-va-banner img {
+  width: 100%;
+}
+
+.columns-va-banner > div > div {
+  order: 1;
+}
+
+.columns-va-banner > div > .columns-va-banner-img-col {
+  order: 0;
+}
+
+.columns-va-banner > div > .columns-va-banner-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns-va-banner > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 24px;
+  }
+
+  .columns-va-banner > div > div {
+    flex: 1;
+    order: unset;
+  }
+}
