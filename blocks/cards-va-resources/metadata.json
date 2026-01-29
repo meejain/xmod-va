@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-va-resources",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-01-29T18:05:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.va.gov/health/",
+    "originPage": "VA Health homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "resource-links",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + link (no images)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "resource link lists",
+      "quick links sections",
+      "navigation card grids"
+    ],
+    "notSuitableFor": [
+      "feature cards with images",
+      "product cards",
+      "team member cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/health/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-01-29T18:05:00.000Z"
+  }
+}

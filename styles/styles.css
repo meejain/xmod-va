@@ -143,7 +143,7 @@ pre {
 }
 
 main > div {
-  margin: 40px 16px;
+  margin: 40px 0;
 }
 
 input,
@@ -254,4 +254,46 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Sidebar layout - two-column layout with main content and sidebar */
+main .section.sidebar-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+main .section.sidebar-layout .tabs-va-content-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+main .section.sidebar-layout .slider-va-stories-wrapper {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+main .section.sidebar-layout .columns-va-sidebar-wrapper {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+@media (max-width: 900px) {
+  main .section.sidebar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  main .section.sidebar-layout .tabs-va-content-wrapper,
+  main .section.sidebar-layout .slider-va-stories-wrapper,
+  main .section.sidebar-layout .columns-va-sidebar-wrapper {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* Metadata block - hidden (used for SEO only) */
+.metadata-wrapper,
+.metadata {
+  display: none !important;
 }

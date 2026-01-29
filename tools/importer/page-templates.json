@@ -1,0 +1,42 @@
+{
+  "templates": [
+    {
+      "name": "VA Health Homepage",
+      "urls": ["https://www.va.gov/health/"],
+      "description": "Veterans Health Administration homepage with carousel, tabs, and content sections",
+      "blocks": [
+        {
+          "name": "carousel-va-news",
+          "instances": [".slider-container", "#slider", ".rotator", "[class*='carousel']"],
+          "section": null
+        },
+        {
+          "name": "tabs-va-content",
+          "instances": [".tab-content", "#tabcontent", ".tabs-container", "[class*='tabs']"],
+          "section": null
+        },
+        {
+          "name": "columns-va-banner",
+          "instances": [
+            ".anti-harassment-section",
+            ".stop-harassment",
+            ".stories-section",
+            "[class*='two-column']",
+            ".side-by-side"
+          ],
+          "section": null
+        },
+        {
+          "name": "cards-va-resources",
+          "instances": [
+            ".resources-list",
+            ".quick-links",
+            "#resources ul",
+            ".sidebar-resources"
+          ],
+          "section": null
+        }
+      ]
+    }
+  ]
+}
