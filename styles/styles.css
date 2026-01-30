@@ -238,6 +238,11 @@ main > .section > div {
   padding: 0 24px;
 }
 
+/* Remove padding for carousel section */
+main > .section.carousel-va-news-container > div {
+  padding: 0;
+}
+
 main > .section:first-of-type {
   margin-top: 0;
 }
@@ -245,6 +250,11 @@ main > .section:first-of-type {
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
+  }
+  
+  /* Remove padding for carousel section on desktop too */
+  main > .section.carousel-va-news-container > div {
+    padding: 0;
   }
 }
 

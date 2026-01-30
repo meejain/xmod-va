@@ -4,6 +4,59 @@
   background: #003161;
 }
 
+/* Breadcrumb styling - targets first paragraph in carousel section */
+.homepage-template .carousel-va-news-container > .default-content-wrapper > p:first-child {
+  font-size: .9em;
+  color: #2e2e2e;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page title (H2) - Veterans Health Administration */
+.homepage-template .carousel-va-news-container > .default-content-wrapper > h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 2.44em;
+  color: #003f72;
+  line-height: 100%;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 6px;
+}
+
+.homepage-template .carousel-va-news-container > .default-content-wrapper > p:first-child a {
+  color: #2e2e2e;
+  text-decoration: none;
+}
+
+.homepage-template .carousel-va-news-container > .default-content-wrapper > p:first-child a:hover,
+.homepage-template .carousel-va-news-container > .default-content-wrapper > p:first-child a:focus {
+  color: #2e2e2e;
+  text-decoration: underline;
+}
+
+/* Also support if ID is added */
+.homepage-template #breadCrumbPath {
+  font-size: .9em;
+  color: #2e2e2e;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.homepage-template #breadCrumbPath a {
+  color: #2e2e2e;
+  text-decoration: none;
+}
+
+.homepage-template #breadCrumbPath a:hover,
+.homepage-template #breadCrumbPath a:focus {
+  color: #2e2e2e;
+  text-decoration: underline;
+}
+
 /* Clearfix utility */
 .clearfix::after {
   content: "";
@@ -520,10 +573,26 @@ div.badge a img {
 
 /* End Widget Social Styles */
 
-/* Main content area */
+/* Main content area - remove padding for full-width carousel */
 .homepage-template .col-md-9 main {
-  padding: 12px 20px 10px 20px;
+  padding: 0;
   background-color: #FFF;
+}
+
+/* Add padding back to content sections that need it */
+.homepage-template .col-md-9 main > div:not(.carousel-va-news-container) {
+  padding: 12px 20px 10px 20px;
+}
+
+/* Carousel section - no padding, full width */
+.homepage-template .carousel-va-news-container {
+  padding: 0;
+  margin: 0;
+}
+
+/* Breadcrumb and H2 title - add padding here */
+.homepage-template .carousel-va-news-container > .default-content-wrapper {
+  padding: 12px 20px 10px 20px;
 }
 
 /* Carousel */

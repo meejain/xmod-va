@@ -1,4 +1,4 @@
-const AUTOPLAY_INTERVAL = 5000; // 5 seconds between slides
+const AUTOPLAY_INTERVAL = 3000; // 3 seconds between slides
 
 // Default labels (no placeholders dependency)
 const labels = {
@@ -87,16 +87,19 @@ function updatePlayPauseButton(block, isPlaying) {
   const pauseBtn = block.querySelector('.carousel-va-news-pause');
 
   if (playBtn && pauseBtn) {
+    // Always show both buttons
+    playBtn.style.display = 'inline-flex';
+    pauseBtn.style.display = 'inline-flex';
+    playBtn.setAttribute('aria-hidden', 'false');
+    pauseBtn.setAttribute('aria-hidden', 'false');
+    
+    // Just update which one is disabled/active
     if (isPlaying) {
-      playBtn.setAttribute('aria-hidden', 'true');
-      playBtn.style.display = 'none';
-      pauseBtn.setAttribute('aria-hidden', 'false');
-      pauseBtn.style.display = 'inline-flex';
+      playBtn.setAttribute('disabled', 'true');
+      pauseBtn.removeAttribute('disabled');
     } else {
-      playBtn.setAttribute('aria-hidden', 'false');
-      playBtn.style.display = 'inline-flex';
-      pauseBtn.setAttribute('aria-hidden', 'true');
-      pauseBtn.style.display = 'none';
+      playBtn.removeAttribute('disabled');
+      pauseBtn.setAttribute('disabled', 'true');
     }
   }
 }
@@ -221,7 +224,7 @@ export default function decorate(block) {
       <button type="button" class="carousel-va-news-pause" aria-label="${labels.pause}" aria-hidden="false">
         <span class="carousel-va-news-pause-icon"></span>
       </button>
-      <button type="button" class="carousel-va-news-play" aria-label="${labels.play}" aria-hidden="true" style="display: none;">
+      <button type="button" class="carousel-va-news-play" aria-label="${labels.play}" aria-hidden="false">
         <span class="carousel-va-news-play-icon"></span>
       </button>
     `;
@@ -267,12 +270,15 @@ export default function decorate(block) {
   if (!isSingleSlide) {
     // Initialize active slide to 0
     block.dataset.activeSlide = 0;
-    bindEvents(block);
-    // Start autoplay by default
-    startAutoplay(block);
-
+    
+    // Force a reflow before setting widths to ensure CSS is applied
+    void block.offsetHeight;
+    
     // Set slide widths based on container width
     const setSlideWidths = () => {
+      // Force reflow to get accurate measurements
+      void block.offsetHeight;
+      
       const containerWidth = container.offsetWidth || block.offsetWidth;
       if (containerWidth > 0) {
         block.querySelectorAll('.carousel-va-news-slide').forEach((slide) => {
@@ -281,10 +287,15 @@ export default function decorate(block) {
         });
       }
     };
-    // Use requestAnimationFrame to ensure layout is complete
-    requestAnimationFrame(() => {
-      requestAnimationFrame(setSlideWidths);
-    });
+    
+    // Use setTimeout to ensure all styles are loaded
+    setTimeout(() => {
+      setSlideWidths();
+      bindEvents(block);
+      // Start autoplay after layout is complete
+      startAutoplay(block);
+    }, 100);
+    
     window.addEventListener('resize', setSlideWidths);
   }
 }
