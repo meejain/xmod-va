@@ -104,9 +104,78 @@ export default async function decorate(doc) {
           // First container: title + first 4 images (indices 0-4)
           const firstContainer = document.createElement('div');
           firstContainer.className = 'default-content-wrapper quick-links-main';
-          for (let i = 0; i < Math.min(5, allParagraphs.length); i++) {
+          firstContainer.id = 'widget-quick-links';
+          
+          // Add title (index 0)
+          firstContainer.appendChild(allParagraphs[0].cloneNode(true));
+          
+          // Wrap Hospital Locator image (index 1) in a container with form
+          if (allParagraphs.length > 1) {
+            const locatorWrapper = document.createElement('div');
+            locatorWrapper.id = 'widget-locator';
+            
+            // Add the Hospital Locator image
+            locatorWrapper.appendChild(allParagraphs[1].cloneNode(true));
+            
+            // Create the ZIP code form
+            const locatorForm = document.createElement('form');
+            locatorForm.id = 'locator-form';
+            locatorForm.setAttribute('onsubmit', 'return Validate();');
+            locatorForm.setAttribute('name', 'zipSearch');
+            locatorForm.setAttribute('method', 'get');
+            locatorForm.setAttribute('action', 'https://www.va.gov/find-locations/');
+            
+            // Create ZIP code input
+            const zipLabel = document.createElement('label');
+            zipLabel.setAttribute('for', 'LocatorPostalCode');
+            zipLabel.style.position = 'absolute';
+            zipLabel.style.left = '-9999px';
+            zipLabel.textContent = 'Enter ZIP code here';
+            
+            const zipInput = document.createElement('input');
+            zipInput.id = 'LocatorPostalCode';
+            zipInput.className = 'inputstyle';
+            zipInput.type = 'text';
+            zipInput.setAttribute('onfocus', "this.value=''");
+            zipInput.size = 10;
+            zipInput.maxLength = 10;
+            zipInput.value = 'Zip Code';
+            zipInput.name = 'inputaddress';
+            zipInput.title = 'Enter ZIP here';
+            
+            // Create Go button
+            const zipButton = document.createElement('div');
+            zipButton.id = 'zipButton';
+            
+            const buttonLabel = document.createElement('label');
+            buttonLabel.setAttribute('for', 'zipInputButton');
+            buttonLabel.style.position = 'absolute';
+            buttonLabel.style.left = '-9999px';
+            buttonLabel.textContent = 'Enter ZIP code here';
+            
+            const buttonInput = document.createElement('input');
+            buttonInput.id = 'zipInputButton';
+            buttonInput.type = 'image';
+            buttonInput.src = 'https://main--xmod-va--meejain.aem.page/assets/media_14e944e0f6bfab121da42c9dcf934be6766cdc5fe.png';
+            buttonInput.alt = 'Search';
+            buttonInput.title = 'Click here to submit';
+            
+            zipButton.appendChild(buttonLabel);
+            zipButton.appendChild(buttonInput);
+            
+            locatorForm.appendChild(zipLabel);
+            locatorForm.appendChild(zipInput);
+            locatorForm.appendChild(zipButton);
+            
+            locatorWrapper.appendChild(locatorForm);
+            firstContainer.appendChild(locatorWrapper);
+          }
+          
+          // Add remaining images (indices 2-4)
+          for (let i = 2; i < Math.min(5, allParagraphs.length); i++) {
             firstContainer.appendChild(allParagraphs[i].cloneNode(true));
           }
+          
           leftColContent.appendChild(firstContainer);
           
           // Second container: 5th image (Veterans Crisis Line) if exists
@@ -126,7 +195,7 @@ export default async function decorate(doc) {
           }
           
           // eslint-disable-next-line no-console
-          console.log('Split Quick Links into 3 containers');
+          console.log('Split Quick Links into 3 containers with ZIP form');
         } else {
           // Fallback: just add the wrapper as-is
           leftColContent.appendChild(wrapper);
