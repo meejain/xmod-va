@@ -297,3 +297,26 @@ main .section.sidebar-layout .columns-va-sidebar-wrapper {
 .metadata {
   display: none !important;
 }
+
+/* Breadcrumbs - VA » Veterans Health Administration */
+main > div:first-child > p:first-child {
+  font-size: 13px;
+  color: #5b616b;
+  margin: 0 0 5px 0;
+  padding: 15px 20px 0;
+}
+
+main > div:first-child > p:first-child a {
+  color: #0071bc;
+  text-decoration: none;
+}
+
+main > div:first-child > p:first-child a:hover {
+  text-decoration: underline;
+}
+
+/* Adjust h1 when breadcrumb is present */
+main > div:first-child > h1 {
+  padding: 0 20px 15px;
+  margin-top: 0;
+}

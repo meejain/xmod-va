@@ -1,0 +1,73 @@
+/* Dropdown VA Persona - "I am a" navigation dropdown */
+/* Matches VA.gov styling: blue bar with dropdown */
+
+.dropdown-va-persona-wrapper {
+  background-color: #195fa4;
+  padding: 10px 18px;
+  margin-bottom: 0;
+}
+
+.dropdown-va-persona {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-va-persona-wrapper-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-va-persona label {
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-va-persona-select {
+  padding: 6px 28px 6px 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  min-width: 180px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23fff' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+
+.dropdown-va-persona-select option {
+  background-color: #fff;
+  color: #333;
+}
+
+.dropdown-va-persona-select:hover {
+  border-color: #fff;
+}
+
+.dropdown-va-persona-select:focus {
+  outline: 2px solid #ffc520;
+  outline-offset: 2px;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .dropdown-va-persona {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .dropdown-va-persona-select {
+    width: 100%;
+  }
+}
