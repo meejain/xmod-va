@@ -56,11 +56,16 @@ export function showSlide(block, slideIndex = 0) {
   const activeSlide = slides[realSlideIndex];
 
   activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
-  block.querySelector('.carousel-va-news-slides').scrollTo({
+  
+  const slidesContainer = block.querySelector('.carousel-va-news-slides');
+  slidesContainer.scrollTo({
     top: 0,
     left: activeSlide.offsetLeft,
     behavior: 'smooth',
   });
+  
+  // Update active slide indicators
+  updateActiveSlide(activeSlide);
 }
 
 function startAutoplay(block) {
@@ -106,21 +111,35 @@ function updatePlayPauseButton(block, isPlaying) {
 
 function bindEvents(block) {
   const slideIndicators = block.querySelector('.carousel-va-news-slide-indicators');
-  if (!slideIndicators) return;
+  
+  if (!slideIndicators) {
+    return;
+  }
 
-  slideIndicators.querySelectorAll('button').forEach((button) => {
+  const buttons = slideIndicators.querySelectorAll('button');
+  
+  buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const slideIndicator = e.currentTarget.parentElement;
-      showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
+      const targetSlide = parseInt(slideIndicator.dataset.targetSlide, 10);
+      showSlide(block, targetSlide);
     });
   });
 
-  block.querySelector('.slide-prev').addEventListener('click', () => {
-    showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
-  });
-  block.querySelector('.slide-next').addEventListener('click', () => {
-    showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
-  });
+  const prevBtn = block.querySelector('.slide-prev');
+  const nextBtn = block.querySelector('.slide-next');
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
+    });
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+    });
+  }
 
   // Play/Pause button events
   const playBtn = block.querySelector('.carousel-va-news-play');
@@ -268,34 +287,15 @@ export default function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
-    // Initialize active slide to 0
     block.dataset.activeSlide = 0;
+    bindEvents(block);
+    startAutoplay(block);
+    updatePlayPauseButton(block, true);
     
-    // Force a reflow before setting widths to ensure CSS is applied
-    void block.offsetHeight;
-    
-    // Set slide widths based on container width
-    const setSlideWidths = () => {
-      // Force reflow to get accurate measurements
-      void block.offsetHeight;
-      
-      const containerWidth = container.offsetWidth || block.offsetWidth;
-      if (containerWidth > 0) {
-        block.querySelectorAll('.carousel-va-news-slide').forEach((slide) => {
-          slide.style.width = `${containerWidth}px`;
-          slide.style.minWidth = `${containerWidth}px`;
-        });
-      }
-    };
-    
-    // Use setTimeout to ensure all styles are loaded
-    setTimeout(() => {
-      setSlideWidths();
-      bindEvents(block);
-      // Start autoplay after layout is complete
-      startAutoplay(block);
-    }, 100);
-    
-    window.addEventListener('resize', setSlideWidths);
+    // Set initial active state
+    const firstSlide = block.querySelector('.carousel-va-news-slide');
+    if (firstSlide) {
+      updateActiveSlide(firstSlide);
+    }
   }
 }

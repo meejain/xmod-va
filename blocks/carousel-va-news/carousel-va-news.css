@@ -22,22 +22,30 @@
 /* Slides wrapper - holds all slides */
 .carousel-va-news .carousel-va-news-slides {
   position: relative;
-  width: 20000em;
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  height: 255px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.carousel-va-news .carousel-va-news-slides::-webkit-scrollbar {
+  display: none;
 }
 
 /* Individual slide */
 .carousel-va-news .carousel-va-news-slide {
   width: 640px;
+  min-width: 640px;
   background-color: #01133F;
-  float: left;
   position: relative;
-  flex: 0 0 auto;
+  flex-shrink: 0;
   height: 255px; /* Match container height */
 }
 
@@ -206,6 +214,12 @@
 
 /* ==================== TABLET AND DESKTOP (768px+) ==================== */
 @media only screen and (min-width: 768px) {
+  /* Desktop: slides take full container width */
+  .carousel-va-news .carousel-va-news-slide {
+    width: 100%;
+    min-width: 100%;
+  }
+  
   /* Desktop layout - image 68%, text 32% side by side */
   .carousel-va-news .carousel-va-news-slide-image {
     width: 68%;
@@ -309,23 +323,43 @@
     border-right: none;
   }
 
-  /* Active/selected thumbnail */
+  /* Active/selected thumbnail - background image with upward pointing notch and rounded corners */
   .carousel-va-news .carousel-va-news-slide-indicator button:disabled {
-    background: url("/va_files/2014/responsive/images/slider-bckgrnd-notch-active.jpg") no-repeat center top;
+    background: url("https://main--xmod-va--meejain.aem.page/assets/media_165955cb363dca8961dfbe4b9d1adeb0faf97c561.jpg") no-repeat center center;
+    background-size: cover;
     min-height: 58px;
+    position: relative;
+    border-radius: 5px;
+    cursor: default;
+  }
+
+  /* Create the upward-pointing triangle/notch at the top using :has selector */
+  .carousel-va-news .carousel-va-news-slide-indicator:has(button:disabled)::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #003d73;
+    z-index: 10;
   }
 
   .carousel-va-news .carousel-va-news-slide-indicator button:focus {
     outline: 2px solid rgba(195, 0, 0, 0.3);
   }
 
-  .carousel-va-news .carousel-va-news-slide-indicator button:hover {
+  .carousel-va-news .carousel-va-news-slide-indicator button:hover:not(:disabled) {
     color: #ffffff;
     text-decoration: underline;
   }
 
   .carousel-va-news .carousel-va-news-slide-indicator button:disabled:hover {
     color: #fff;
+    text-decoration: none;
   }
 }
 
