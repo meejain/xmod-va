@@ -1,0 +1,192 @@
+export default async function decorate(doc) {
+  const main = doc.querySelector('main');
+  if (!main) {
+    // eslint-disable-next-line no-console
+    console.warn('Homepage template: main element not found');
+    return;
+  }
+
+  // Find the dropdown and accordion block wrappers (not just the blocks)
+  const dropdownWrapper = main.querySelector('.dropdown-va-persona-wrapper');
+  const accordionWrapper = main.querySelector('.accordion-va-menu-wrapper');
+
+  if (!dropdownWrapper || !accordionWrapper) {
+    // eslint-disable-next-line no-console
+    console.warn('Homepage template: dropdown or accordion wrapper not found', {
+      dropdown: !!dropdownWrapper,
+      accordion: !!accordionWrapper,
+    });
+    return;
+  }
+
+  // Verify blocks are loaded
+  const dropdown = dropdownWrapper.querySelector('.dropdown-va-persona');
+  const accordion = accordionWrapper.querySelector('.accordion-va-menu');
+  
+  if (!dropdown || !accordion) {
+    // eslint-disable-next-line no-console
+    console.warn('Homepage template: blocks not found in wrappers');
+    return;
+  }
+
+  // Check if blocks are loaded
+  if (dropdown.dataset.blockStatus !== 'loaded' || accordion.dataset.blockStatus !== 'loaded') {
+    // eslint-disable-next-line no-console
+    console.warn('Homepage template: blocks not fully loaded', {
+      dropdownStatus: dropdown.dataset.blockStatus,
+      accordionStatus: accordion.dataset.blockStatus,
+    });
+  }
+
+  // Create the outer wrapper structure
+  const bgMain = document.createElement('div');
+  bgMain.id = 'bg-main';
+
+  const bgMiddleEffect = document.createElement('div');
+  bgMiddleEffect.id = 'bg-middle-effect';
+
+  const container = document.createElement('div');
+  container.className = 'container';
+  container.id = 'main-wrap';
+
+  const row = document.createElement('section');
+  row.className = 'row';
+  row.id = 'container';
+
+  // Create left column (col-md-3)
+  const leftCol = document.createElement('div');
+  leftCol.className = 'col-md-3';
+
+  const leftFill = document.createElement('div');
+  leftFill.className = 'fill';
+
+  const leftNavContainer = document.createElement('div');
+  leftNavContainer.id = 'leftNavContainer';
+  leftNavContainer.className = 'clearfix';
+
+  // Add sitemap header (matching VA.gov structure)
+  const sitemapDiv = document.createElement('div');
+  sitemapDiv.className = 'sitemap';
+  const sitemapSpan = document.createElement('span');
+  sitemapSpan.textContent = 'Veterans Health Administration';
+  sitemapDiv.appendChild(sitemapSpan);
+
+  // Append sitemap header first
+  leftNavContainer.appendChild(sitemapDiv);
+
+  // Move dropdown and accordion wrappers into left nav
+  leftNavContainer.appendChild(dropdownWrapper);
+  leftNavContainer.appendChild(accordionWrapper);
+
+  // Find and move left column content (Quick Links, widgets, badges, etc.)
+  let leftColContent = document.createElement('div');
+  leftColContent.id = 'left-col-content';
+
+  // Look for the section that contains dropdown and accordion
+  // It may also contain Quick Links content
+  const leftNavSection = main.querySelector('.dropdown-va-persona-container.accordion-va-menu-container');
+  
+  if (leftNavSection) {
+    // Find any default-content-wrapper in this section (contains Quick Links)
+    const contentWrappers = leftNavSection.querySelectorAll('.default-content-wrapper');
+    
+    contentWrappers.forEach(wrapper => {
+      // Check if this wrapper contains Quick Links content
+      const strongTag = wrapper.querySelector('strong');
+      if (strongTag && strongTag.textContent.includes('Quick Links')) {
+        // Found Quick Links content, split into 3 containers
+        wrapper.remove();
+        
+        // Get all paragraphs
+        const allParagraphs = Array.from(wrapper.querySelectorAll('p'));
+        
+        if (allParagraphs.length >= 3) {
+          // First container: title + first 4 images (indices 0-4)
+          const firstContainer = document.createElement('div');
+          firstContainer.className = 'default-content-wrapper quick-links-main';
+          for (let i = 0; i < Math.min(5, allParagraphs.length); i++) {
+            firstContainer.appendChild(allParagraphs[i].cloneNode(true));
+          }
+          leftColContent.appendChild(firstContainer);
+          
+          // Second container: 5th image (Veterans Crisis Line) if exists
+          if (allParagraphs.length > 5) {
+            const secondContainer = document.createElement('div');
+            secondContainer.className = 'default-content-wrapper quick-links-badge';
+            secondContainer.appendChild(allParagraphs[5].cloneNode(true));
+            leftColContent.appendChild(secondContainer);
+          }
+          
+          // Third container: 6th image (My HealtheVet) if exists
+          if (allParagraphs.length > 6) {
+            const thirdContainer = document.createElement('div');
+            thirdContainer.className = 'default-content-wrapper quick-links-badge';
+            thirdContainer.appendChild(allParagraphs[6].cloneNode(true));
+            leftColContent.appendChild(thirdContainer);
+          }
+          
+          // eslint-disable-next-line no-console
+          console.log('Split Quick Links into 3 containers');
+        } else {
+          // Fallback: just add the wrapper as-is
+          leftColContent.appendChild(wrapper);
+        }
+      }
+    });
+  }
+
+  // Also check for standalone #left-col-content or .widget elements
+  let existingLeftContent = main.querySelector('#left-col-content');
+  if (existingLeftContent) {
+    existingLeftContent.remove();
+    // Move all children to our leftColContent
+    while (existingLeftContent.firstChild) {
+      leftColContent.appendChild(existingLeftContent.firstChild);
+    }
+    // eslint-disable-next-line no-console
+    console.log('Found #left-col-content, moving to left sidebar');
+  }
+
+  // Look for .widget elements anywhere in main
+  const widgets = main.querySelectorAll('.widget');
+  if (widgets.length > 0) {
+    widgets.forEach(widget => {
+      widget.remove();
+      leftColContent.appendChild(widget);
+    });
+    // eslint-disable-next-line no-console
+    console.log(`Found ${widgets.length} widget(s), moving to left sidebar`);
+  }
+  
+  // Append to structure
+  leftFill.appendChild(leftNavContainer);
+  leftFill.appendChild(leftColContent);
+  leftCol.appendChild(leftFill);
+
+  // Create right column (col-md-9)
+  const rightCol = document.createElement('div');
+  rightCol.className = 'col-md-9';
+
+  const rightFill = document.createElement('div');
+  rightFill.className = 'fill';
+
+  // Move main content into right column
+  rightFill.appendChild(main);
+  rightCol.appendChild(rightFill);
+
+  // Assemble the structure
+  row.appendChild(leftCol);
+  row.appendChild(rightCol);
+  container.appendChild(row);
+  bgMiddleEffect.appendChild(container);
+  bgMain.appendChild(bgMiddleEffect);
+
+  // Insert the new structure into the body
+  doc.body.insertBefore(bgMain, doc.body.firstChild);
+
+  // Add homepage-template class to body
+  doc.body.classList.add('homepage-template');
+
+  // eslint-disable-next-line no-console
+  console.log('Homepage template applied successfully');
+}

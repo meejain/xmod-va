@@ -1,6 +1,7 @@
 /**
- * Dropdown VA Persona - "I am a" quick navigation dropdown
+ * Dropdown VA Persona - "I AM A..." quick navigation dropdown
  * Allows users to quickly navigate to persona-specific pages
+ * Matches VA.gov left sidebar styling
  */
 export default function decorate(block) {
   const rows = [...block.children];
@@ -13,21 +14,24 @@ export default function decorate(block) {
     return { label, url };
   });
 
-  // Create the dropdown structure
-  const wrapper = document.createElement('div');
-  wrapper.className = 'dropdown-va-persona-wrapper-inner';
-
+  // Create the label
   const label = document.createElement('label');
-  label.htmlFor = 'iama-dropdown';
-  label.textContent = 'I am a:';
+  label.htmlFor = 'iama';
+  label.textContent = 'I AM A...';
 
+  // Create the styled select wrapper
+  const selectWrapper = document.createElement('div');
+  selectWrapper.className = 'dropdown-va-persona-select-wrapper styled-select';
+
+  // Create the select element
   const select = document.createElement('select');
-  select.id = 'iama-dropdown';
-  select.className = 'dropdown-va-persona-select';
+  select.id = 'iama';
+  select.name = 'mydropdown';
+  select.className = 'dropdown-va-persona-select dropdown';
 
   // Add default option
   const defaultOption = document.createElement('option');
-  defaultOption.value = '';
+  defaultOption.value = '0';
   defaultOption.textContent = 'Select One';
   select.appendChild(defaultOption);
 
@@ -44,15 +48,16 @@ export default function decorate(block) {
   // Handle selection change
   select.addEventListener('change', (e) => {
     const selectedUrl = e.target.value;
-    if (selectedUrl) {
+    if (selectedUrl && selectedUrl !== '0') {
       window.location.href = selectedUrl;
     }
   });
 
-  wrapper.appendChild(label);
-  wrapper.appendChild(select);
+  // Assemble the structure
+  selectWrapper.appendChild(select);
 
   // Clear block and add new content
   block.textContent = '';
-  block.appendChild(wrapper);
+  block.appendChild(label);
+  block.appendChild(selectWrapper);
 }

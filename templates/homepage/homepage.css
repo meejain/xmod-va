@@ -1,0 +1,917 @@
+/* Homepage Template Layout - Matching VA.gov Structure */
+
+.homepage-template {
+  background: #003161;
+}
+
+/* Clearfix utility */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* Background container */
+.homepage-template #bg-main {
+  min-width: 320px;
+  background: url("/va_files/2014/responsive/images/bg-top-effect.png") #000B34 no-repeat scroll center top;
+}
+
+/* Middle effect background */
+.homepage-template #bg-middle-effect {
+  width: 100%;
+  height: auto;
+  background: url("https://www.va.gov/va_files/2014/responsive/images/bg-middle-effect.png") repeat-y scroll center -65px #01133F;
+}
+
+/* Main container wrapper */
+.homepage-template .container {
+  background: #FFFFFF;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Row container */
+.homepage-template .row {
+  background: #FFFFFF;
+  padding: 0 0 20px 0;
+  overflow: hidden;
+}
+
+/* Column base styles */
+.homepage-template .col-md-3,
+.homepage-template .col-md-9 {
+  float: left;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.homepage-template .fill {
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Left Navigation Container */
+.homepage-template #leftNavContainer {
+  background: url("/va_files/2014/responsive/images/gray_nav_bkgd.png") left top repeat-x #EEEEEE;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Sitemap header - "Veterans Health Administration" */
+.homepage-template #leftNavContainer .sitemap {
+  background: #195FA4;
+  padding: 9px 10px 10px 0;
+  margin-bottom: 0;
+  display: block;
+}
+
+.homepage-template #leftNavContainer .sitemap span {
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 10px 0 0 16px;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* Left nav blocks */
+.homepage-template #leftNavContainer .dropdown-va-persona-wrapper,
+.homepage-template #leftNavContainer .accordion-va-menu-wrapper {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.homepage-template #leftNavContainer .accordion-va-menu-wrapper {
+  background: transparent;
+  margin-bottom: 0;
+}
+
+.homepage-template #leftNavContainer .accordion-va-menu {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+/* Dropdown styling */
+.homepage-template .dropdown-va-persona-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  background: url("/va_files/2014/responsive/images/gray_nav_bkgd.png") left top repeat-x;
+  margin: 0;
+}
+
+.homepage-template .dropdown-va-persona {
+  width: 100%;
+  margin: 0;
+  padding: 12px 10px 18px 10px;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Mobile: Hide accordion and sitemap by default (matching VA.gov behavior) */
+@media (max-width: 959px) {
+  .homepage-template #leftNavContainer .sitemap {
+    display: none;
+  }
+
+  .homepage-template #leftNavContainer .accordion-va-menu-wrapper {
+    display: none;
+  }
+}
+
+/* Desktop: Show all elements */
+@media (min-width: 960px) {
+  .homepage-template #leftNavContainer .sitemap {
+    display: block;
+  }
+  
+  .homepage-template #leftNavContainer .accordion-va-menu-wrapper {
+    display: block;
+  }
+}
+
+/* ------------  Quick Links Widget Styles -------------- */
+.homepage-template .widget {
+  max-height: 100%;
+  border: 4px solid #e0e9f0;
+  margin: 10px;
+  padding: 3px 10px;
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  width: calc(100% - 20px);
+  clear: both;
+}
+
+.homepage-template .widget-title {
+  color: #003F72;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: none;
+}
+
+.homepage-template .widget-title h4 {
+  color: #003F72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+.homepage-template .widget-title .hdr-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  color: #003F72;
+  line-height: 1.3em;
+  font-weight: 400;
+  display: block;
+  text-align: center;
+}
+
+.homepage-template .widget ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.homepage-template .widget ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  float: left;
+  padding: 8px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.homepage-template .widget a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: #0B6CB2;
+  font-style: normal;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.homepage-template .widget a:link {
+  color: #0B6CB2;
+  text-decoration: none;
+}
+
+.homepage-template .widget a:visited {
+  color: #7d478a;
+  text-decoration: none;
+}
+
+.homepage-template .widget a:active {
+  color: #0B6CB2;
+  text-decoration: none;
+}
+
+.homepage-template .widget a:hover {
+  color: #900;
+  text-decoration: underline;
+}
+
+/* Widget Quick Links Styles */
+#widget-quick-links {
+  overflow: hidden;
+}
+
+#widget-locator {
+  background: url(/va_files/2014/responsive/images/bg-locator.png) no-repeat left top transparent;
+  overflow: hidden;
+  min-height: 120px;
+  position: relative;
+}
+
+#locator-form {
+  height: 30px;
+  width: 170px;
+  float: left;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin: 40px 0 20px 25px;
+  position: relative;
+  z-index: 2;
+}
+
+#zipInputButton {
+  height: 28px;
+  width: 43px;
+  float: left;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: block;
+  background: none;
+}
+
+#locator-form form {
+  margin: 0;
+  padding: 0;
+}
+
+#widget-quick-links ul {
+  clear: both;
+  padding-top: 10px;
+}
+
+#widget-quick-links ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin-left: 5px;
+  margin-bottom: 1px;
+  border-top: none;
+  border-bottom: none;
+  float: left;
+  width: 200px;
+  clear: both;
+}
+
+#widget-quick-links ul li img,
+#widget-quick-links ul li a img {
+  border: none;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.inputstyle,
+#locator-form #LocatorPostalCode {
+  color: #000000;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-right: 1px;
+  margin-top: 3px;
+  padding-left: 0.2em;
+  vertical-align: top;
+  width: 90px;
+  height: 19px;
+  float: left;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+#locator-form-Button #zipInputButton {
+  color: #555555;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  width: 43px;
+  margin-left: 0;
+  float: right;
+}
+
+#locator-form #searchOptions {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  left: 0;
+  margin-right: 1px;
+  top: 0;
+}
+
+#locator-form label {
+  color: #000033;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+}
+
+/* End Widget Quick Links Styles */
+
+/* ------------  Badge Widget Styles -------------- */
+div.badge {
+  float: left;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.homepage-template #left-col-content .badge {
+  margin: 10px 10px 13px 17px;
+}
+
+div.badge a img {
+  width: 184px;
+  height: 90px;
+  border: none;
+  display: block;
+}
+
+div.badge a,
+div.badge a img {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.homepage-template .badge {
+  float: left;
+  margin: 10px 0 0 0;
+  padding: 0;
+  clear: both;
+  width: 100%;
+}
+
+/* ------------  Email Widget Styles -------------- */
+#widget-email {
+  width: 166px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  margin: 0 0 15px 8px;
+}
+
+#widget-email-Button {
+  height: 30px;
+  width: 66px;
+  float: right;
+}
+
+#widget-area form {
+  margin: 0;
+  padding: 0;
+}
+
+#widget-email #email {
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-right: 1px;
+  margin-top: 4px;
+  padding-left: 0.2em;
+  vertical-align: top;
+  width: 90px;
+  height: 27px;
+}
+
+#widget-email-Button #vamc_govDeliverySubmit {
+  color: #555555;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  width: 66px;
+  margin-left: 0;
+  float: right;
+}
+
+#widget-email-Button .form_button {
+  color: #555555;
+  float: right;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 0;
+  width: 66px;
+}
+
+#widget-email #searchOptions {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  left: 0;
+  margin-right: 1px;
+  top: 0;
+}
+
+#widget-email label {
+  color: #000033;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+}
+
+/* ------------  User Widget Styles -------------- */
+.widget-user {
+  float: left;
+  height: 100%;
+  margin: 0 4px 10px 5px;
+  padding: 0;
+}
+
+.widget-user ul li {
+  padding: 8px 6px;
+  width: 100%;
+}
+
+.widget-user ul li:last-child a {
+  border-right: none;
+}
+
+.widget-user ul li a {
+  border-right: 0px solid #0B6CB2;
+  padding-right: 20px;
+}
+
+/* ------------  Social Widget Styles -------------- */
+#widget-social {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+#widget-social ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin: 0 0 0 1px;
+  border-top: none;
+  border-bottom: none;
+  float: left;
+  width: 88px;
+}
+
+#socialmedia {
+  float: left;
+  width: 190px;
+  margin-bottom: 10px;
+  padding-top: 20px;
+  clear: right;
+}
+
+#socialmedia ul {
+  margin: 0;
+  padding: 0;
+}
+
+#socialmedia li {
+  float: left;
+  margin: 0;
+  display: block;
+  padding-right: 8px;
+}
+
+/* End Widget Social Styles */
+
+/* Main content area */
+.homepage-template .col-md-9 main {
+  padding: 12px 20px 10px 20px;
+  background-color: #FFF;
+}
+
+/* Carousel */
+.homepage-template .carousel-va-news {
+  width: 100%;
+  margin: 0;
+}
+
+/* Tablet and up (768px+) */
+@media (min-width: 768px) {
+  .homepage-template #bg-middle-effect {
+    background: url("https://www.va.gov/va_files/2014/responsive/images/bg-middle-effect.png") repeat-y scroll center -65px #01133F;
+  }
+
+  .homepage-template .container {
+    background: #FFFFFF;
+  }
+
+  .homepage-template .row {
+    background: url("/va_files/2014/responsive/images/bg-content.png") repeat-y 0 0 #FFFFFF;
+  }
+
+  .homepage-template .col-md-3 {
+    width: 23%;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: transparent;
+  }
+
+  .homepage-template .col-md-9 {
+    width: 77%;
+    background: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .homepage-template #leftNavContainer {
+    min-height: auto;
+    margin: 0 0 30px 0;
+  }
+}
+
+/* Desktop (960px+) */
+@media (min-width: 960px) {
+  .homepage-template .container {
+    width: 959px;
+    border: 1px solid #01133F;
+  }
+
+  .homepage-template .row {
+    background: url("/va_files/2014/responsive/images/bg-content.png") repeat-y 0 0 #FFFFFF;
+  }
+}
+
+/* Left Column Additional Content Area */
+.homepage-template #left-col-content {
+  height: auto;
+  margin: 0;
+  display: block;
+  width: 100%;
+  float: left;
+  clear: both;
+  padding-top: 0;
+}
+
+/* Quick Links - Main container (title + first 4 images) */
+.homepage-template #left-col-content .quick-links-main {
+  max-height: 100%;
+  border: 4px solid #e0e9f0;
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+  width: calc(100% - 20px);
+  clear: both;
+}
+
+/* Quick Links - Badge containers (last 2 images separate) */
+.homepage-template #left-col-content .quick-links-badge {
+  max-height: 100%;
+  border: 4px solid #e0e9f0;
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+  width: calc(100% - 20px);
+  clear: both;
+}
+
+/* Paragraphs inside containers - no individual borders */
+.homepage-template #left-col-content .default-content-wrapper > p {
+  margin: 0;
+  padding: 2px 0;
+  text-align: center;
+  line-height: 0;
+}
+
+/* Title paragraph - normal line height for text */
+.homepage-template #left-col-content .default-content-wrapper > p:first-child {
+  padding-top: 5px;
+  padding-bottom: 8px;
+  line-height: normal;
+}
+
+.homepage-template #left-col-content .default-content-wrapper strong {
+  color: #003F72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  line-height: normal;
+}
+
+.homepage-template #left-col-content .default-content-wrapper picture {
+  display: block;
+  margin: 0 auto;
+  line-height: 0;
+}
+
+.homepage-template #left-col-content .default-content-wrapper img {
+  display: block;
+  border: none;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Widget Styles */
+.homepage-template .widget {
+  max-height: 100%;
+  border: 4px solid #e0e9f0;
+  margin: 8px 8px 0px 8px;
+  padding: 3px 10px;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZmVmZWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(239,239,239,1)));
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 100%);
+  background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 100%);
+  background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 );
+}
+
+.homepage-template .widget-title {
+  color: #003F72;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: none;
+}
+
+.homepage-template .widget-title h4,
+.homepage-template .widget-title .hdr-text {
+  color: #003F72;
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.homepage-template .widget ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.homepage-template .widget ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  float: left;
+  padding: 8px;
+  margin: 0;
+  width: 100%;
+}
+
+.homepage-template .widget a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: #0B6CB2;
+  font-style: normal;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.homepage-template .widget a:link { color: #0B6CB2; text-decoration: none;}
+.homepage-template .widget a:visited {color: #7d478a; text-decoration: none;}
+.homepage-template .widget a:active { color: #0B6CB2; text-decoration: none;}
+.homepage-template .widget a:hover { color: #900; text-decoration: underline;}
+
+/* Widget Locator (Quick Links) */
+.homepage-template #widget-quick-links {
+  overflow: hidden;
+}
+
+.homepage-template #widget-locator {
+  background: url(/va_files/2014/responsive/images/bg-locator.png) no-repeat left top transparent;
+  overflow: hidden;
+}
+
+.homepage-template #locator-form {
+  height: 30px;
+  width: 170px;
+  float: left;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  margin: 40px 0 20px 25px;
+}
+
+.homepage-template #locator-form form {
+  margin: 0;
+  padding: 0;
+}
+
+.homepage-template #locator-form #LocatorPostalCode {
+  color: #000000;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  margin-right: 1px;
+  margin-top: 3px;
+  padding-left: 0.2em;
+  vertical-align: top;
+  width: 90px;
+  height: 19px;
+  float: left;
+}
+
+.homepage-template #zipButton {
+  height: 28px;
+  width: 43px;
+  float: left;
+  position: relative;
+  z-index: 2;
+}
+
+.homepage-template #zipInputButton {
+  height: 28px;
+  width: 43px;
+  float: left;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: block;
+  background: none;
+}
+
+.homepage-template #widget-quick-links ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin-left: 5px;
+  margin-bottom: 1px;
+  border-top: none;
+  border-bottom: none;
+  float: left;
+  width: 200px;
+}
+
+/* Badge Styles */
+.homepage-template div.badge {
+  float: left;
+  margin: 10px 10px 13px 17px;
+  padding: 0;
+}
+
+.homepage-template div.badge a img {
+  width: 184px;
+  height: 90px;
+}
+
+.homepage-template div.badge a,
+.homepage-template div.badge a img {
+  margin: 0;
+  padding: 0;
+}
+
+/* User Widget */
+.homepage-template .widget-user {
+  float: left;
+  height: 100%;
+  margin: 0 4px 10px 5px;
+  padding: 0;
+}
+
+.homepage-template .widget-user ul li {
+  padding: 8px 6px;
+  width: 100%;
+}
+
+.homepage-template .widget-user ul li:last-child a {
+  border-right: none;
+}
+
+.homepage-template .widget-user ul li a {
+  border-right: 0px solid #0B6CB2;
+  padding-right: 20px;
+}
+
+/* Social Widget */
+.homepage-template #widget-social {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.homepage-template #widget-social ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin: 0 0 0 1px;
+  border-top: none;
+  border-bottom: none;
+  float: left;
+  width: 88px;
+}
+
+/* Email Widget */
+.homepage-template #widget-email {
+  width: 166px;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  color: #2e2e2e;
+  margin: 0 0 15px 8px;
+}
+
+.homepage-template #widget-email-Button {
+  height: 30px;
+  width: 66px;
+  float: right;
+}
+
+.homepage-template #widget-email #email {
+  color: #000000;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  margin-right: 1px;
+  margin-top: 4px;
+  padding-left: 0.2em;
+  vertical-align: top;
+  width: 90px;
+  height: 27px;
+}
+
+.homepage-template #widget-email label {
+  color: #000033;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 9px;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+}
+
+/* Desktop-only widgets */
+@media (min-width: 960px) {
+  .homepage-template #left-col-content {
+    display: block;
+  }
+
+  /* Desktop: Widget styling adjustments */
+  .homepage-template .widget {
+    max-height: 100%;
+    border: 4px solid #e0e9f0;
+    margin: 8px 8px 0px 8px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .homepage-template .widget ul li {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2e2e2e;
+    list-style-type: none;
+    display: block;
+    float: left;
+    padding: 8px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

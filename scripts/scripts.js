@@ -11,6 +11,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -90,17 +91,74 @@ export function decorateMain(main) {
 }
 
 /**
+ * Loads a template's CSS and JS
+ * @param {Element} doc The document element
+ * @param {string} templateName The template name
+ */
+export async function loadTemplate(doc, templateName) {
+  try {
+    const cssLoaded = new Promise((resolve) => {
+      loadCSS(
+        `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`,
+      )
+        .then(resolve)
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error(
+            `failed to load css module for ${templateName}`,
+            err.target?.href,
+          );
+          resolve();
+        });
+    });
+
+    const decorationComplete = new Promise((resolve) => {
+      (async () => {
+        try {
+          const mod = await import(
+            `../templates/${templateName}/${templateName}.js`
+          );
+          if (mod.default) {
+            await mod.default(doc);
+          }
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.log(`failed to load module for ${templateName}`, error);
+        }
+        resolve();
+      })();
+    });
+
+    document.body.classList.add(`${templateName}-template`);
+
+    await Promise.all([cssLoaded, decorationComplete]);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(`failed to load template ${templateName}`, error);
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
+  const templateName = getMetadata('template');
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
+    
+    // Load first section with LCP image
     await loadSection(main.querySelector('.section'), waitForFirstImage);
+    
+    // If there's a template, load ALL sections first before running template
+    if (templateName) {
+      await loadSections(main);
+      await loadTemplate(doc, templateName);
+    }
   }
 
   try {
@@ -121,7 +179,12 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
 
   const main = doc.querySelector('main');
-  await loadSections(main);
+  const templateName = getMetadata('template');
+  
+  // Only load sections if template didn't already load them
+  if (!templateName) {
+    await loadSections(main);
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
