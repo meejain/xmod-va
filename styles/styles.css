@@ -291,14 +291,14 @@ main .section.sidebar-layout .columns-va-sidebar-wrapper {
 
 @media (max-width: 900px) {
   main .section.sidebar-layout {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   main .section.sidebar-layout .tabs-va-content-wrapper,
   main .section.sidebar-layout .slider-va-stories-wrapper,
   main .section.sidebar-layout .columns-va-sidebar-wrapper {
-    grid-column: 1;
-    grid-row: auto;
+    flex: 1 1 100%;
+    width: 100%;
   }
 }
 

@@ -69,12 +69,13 @@ export default function decorate(block) {
   nav.className = 'slider-va-stories-nav';
   nav.innerHTML = `
     <div class="slider-va-stories-counter">
-      <span class="current">1</span> of <span class="total">${stories.length}</span>
-      <button type="button" class="slider-va-stories-prev" aria-label="Previous">Previous</button>
-      <span>|</span>
-      <button type="button" class="slider-va-stories-next" aria-label="Next">Next</button>
+      <span class="current">1</span> of ${stories.length} &nbsp;
+      <a href="#" class="slider-va-stories-prev" title="Previous Inside Veterans Health story">◄ Previous</a> | 
+      <a href="#" class="slider-va-stories-next" title="Next Inside Veterans Health story">Next ►</a>
     </div>
-    <a href="https://www.va.gov/health/InsideVHA.asp" class="slider-va-stories-more">More Stories</a>
+    <span class="slider-va-stories-more-wrapper">
+      <a href="https://www.va.gov/health/InsideVHA.asp" class="slider-va-stories-more" title="More Stories (accessible story list)">More Stories ►</a>
+    </span>
   `;
   wrapper.appendChild(nav);
 
@@ -93,11 +94,13 @@ export default function decorate(block) {
     nav.querySelector('.current').textContent = newIndex + 1;
   };
 
-  nav.querySelector('.slider-va-stories-prev').addEventListener('click', () => {
+  nav.querySelector('.slider-va-stories-prev').addEventListener('click', (e) => {
+    e.preventDefault();
     showSlide(currentSlide - 1);
   });
 
-  nav.querySelector('.slider-va-stories-next').addEventListener('click', () => {
+  nav.querySelector('.slider-va-stories-next').addEventListener('click', (e) => {
+    e.preventDefault();
     showSlide(currentSlide + 1);
   });
 

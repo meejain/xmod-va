@@ -6,7 +6,7 @@
 
 /* Breadcrumb styling - targets first paragraph in carousel section */
 .homepage-template .carousel-va-news-container > .default-content-wrapper > p:first-child {
-  font-size: .9em;
+  font-size: 12px;
   color: #2e2e2e;
   font-weight: 600;
   margin-top: 5px;
@@ -38,7 +38,7 @@
 
 /* Also support if ID is added */
 .homepage-template #breadCrumbPath {
-  font-size: .9em;
+  font-size: 12px;
   color: #2e2e2e;
   font-weight: 600;
   margin-top: 5px;
@@ -577,10 +577,12 @@ div.badge a img {
 .homepage-template .col-md-9 main {
   padding: 0;
   background-color: #FFF;
+  position: relative;
+  top: -30px;
 }
 
 /* Add padding back to content sections that need it */
-.homepage-template .col-md-9 main > div:not(.carousel-va-news-container) {
+.homepage-template .col-md-9 main > div:not(.carousel-va-news-container):not(.section) {
   padding: 12px 20px 10px 20px;
 }
 
@@ -1055,5 +1057,40 @@ div.badge a img {
     margin: 0;
     width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Two-column layout - matching VA.gov col-md-8 / col-md-4 */
+  .homepage-template .section.sidebar-layout {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 30px 0 0 0;
+  }
+
+  /* Main content area - col-md-8 equivalent (70.8% width) */
+  .homepage-template .section.sidebar-layout .tabs-va-content-wrapper {
+    float: left;
+    width: 70.8%;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0;
+  }
+
+  /* Sidebar area - col-md-4 equivalent (29.2% width) */
+  .homepage-template .section.sidebar-layout .columns-va-sidebar-wrapper {
+    float: left;
+    width: 29.2%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Ensure proper clearing */
+  .homepage-template .section.sidebar-layout::after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }

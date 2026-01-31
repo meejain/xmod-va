@@ -64,16 +64,6 @@ export default async function decorate(doc) {
   leftNavContainer.id = 'leftNavContainer';
   leftNavContainer.className = 'clearfix';
 
-  // Add sitemap header (matching VA.gov structure)
-  const sitemapDiv = document.createElement('div');
-  sitemapDiv.className = 'sitemap';
-  const sitemapSpan = document.createElement('span');
-  sitemapSpan.textContent = 'Veterans Health Administration';
-  sitemapDiv.appendChild(sitemapSpan);
-
-  // Append sitemap header first
-  leftNavContainer.appendChild(sitemapDiv);
-
   // Move dropdown and accordion wrappers into left nav
   leftNavContainer.appendChild(dropdownWrapper);
   leftNavContainer.appendChild(accordionWrapper);
