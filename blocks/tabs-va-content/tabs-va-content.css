@@ -11,7 +11,7 @@
   list-style: none;
   margin: 0 !important;
   padding: 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: none;
   display: block;
   overflow: visible;
   background: transparent;
@@ -125,7 +125,7 @@
 @media (min-width: 768px) {
   .tabs-va-content .tabs-va-content-list {
     display: block;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: none;
     overflow: visible;
     background: transparent;
   }
