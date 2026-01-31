@@ -119,10 +119,12 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  // VA.gov 4-row structure: banner, crisis, brand (logo + tools), sections (main nav)
-  const classes = ['banner', 'crisis', 'brand', 'sections'];
+  // VA.gov 3-section structure: brand (banner + crisis + logo), sections (main nav), tools (search/contact/signin)
+  // Filter out HR elements (section separators) and only assign classes to div sections
+  const classes = ['brand', 'sections', 'tools'];
+  const sections = [...nav.children].filter((child) => child.tagName !== 'HR');
   classes.forEach((c, i) => {
-    const section = nav.children[i];
+    const section = sections[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
