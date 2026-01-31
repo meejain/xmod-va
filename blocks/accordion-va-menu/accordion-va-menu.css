@@ -134,7 +134,7 @@
 /* Adjust padding for items without arrows */
 .accordion-va-menu details:not(:has(.accordion-va-menu-item-body ul)) summary.accordion-va-menu-item-label,
 .accordion-va-menu details:has(.accordion-va-menu-item-body:empty) summary.accordion-va-menu-item-label {
-  padding-left: 16px;
+  padding-left: 36px;
 }
 
 /* Active state for top-level items */
@@ -384,12 +384,12 @@
   /* Desktop: Adjust padding for items without arrows */
   .accordion-va-menu details:not(:has(.accordion-va-menu-item-body ul)) summary.accordion-va-menu-item-label,
   .accordion-va-menu details:has(.accordion-va-menu-item-body:empty) summary.accordion-va-menu-item-label {
-    padding-left: 16px;
+    padding-left: 32px;
   }
 
   .accordion-va-menu details.accordion-va-menu-nested:not(:has(.accordion-va-menu-nested-body ul)) summary.accordion-va-menu-nested-label,
   .accordion-va-menu details.accordion-va-menu-nested:has(.accordion-va-menu-nested-body:empty) summary.accordion-va-menu-nested-label {
-    padding-left: 16px;
+    padding-left: 34px;
   }
 
   /* Active/open state stays blue gradient */

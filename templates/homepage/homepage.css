@@ -605,7 +605,7 @@ div.badge a img {
 /* Tablet and up (768px+) */
 @media (min-width: 768px) {
   .homepage-template #bg-middle-effect {
-    background: url("https://www.va.gov/va_files/2014/responsive/images/bg-middle-effect.png") repeat-y scroll center -65px #01133F;
+    background: url(https://main--xmod-va--meejain.aem.page/assets/media_1189320c788ae8bb1dcd9595890eef8410a14c78a.png) center -65px repeat-y scroll rgb(0, 115, 180);
   }
 
   .homepage-template .container {
