@@ -231,6 +231,29 @@ export default async function decorate(doc) {
 
   // Move main content into right column
   rightFill.appendChild(main);
+  
+  // Find all sections with class "middle" and group them in tabs-va-content-wrapper
+  const middleSections = main.querySelectorAll('.section.middle');
+  const tabsWrapper = main.querySelector('.tabs-va-content-wrapper');
+  
+  if (tabsWrapper && middleSections.length > 0) {
+    // Create a container div for all middle sections
+    const middleContentContainer = document.createElement('div');
+    middleContentContainer.className = 'middle-content-container';
+    
+    // Move all middle sections into the container
+    middleSections.forEach(section => {
+      section.remove();
+      middleContentContainer.appendChild(section);
+    });
+    
+    // Append the container to tabs-va-content-wrapper
+    tabsWrapper.appendChild(middleContentContainer);
+    
+    // eslint-disable-next-line no-console
+    console.log(`Moved ${middleSections.length} middle section(s) into tabs-va-content-wrapper`);
+  }
+  
   rightCol.appendChild(rightFill);
 
   // Assemble the structure
