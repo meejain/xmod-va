@@ -779,7 +779,7 @@ div.badge a img {
 .homepage-template #left-col-content .default-content-wrapper strong {
   color: #003F72;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
+  font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
   display: block;
@@ -982,6 +982,7 @@ div.badge a img {
 .homepage-template #widget-social {
   overflow: hidden;
   margin-bottom: 10px;
+  display: flex;
 }
 
 .homepage-template #widget-social ul li {
@@ -1071,17 +1072,17 @@ div.badge a img {
   /* Main content area - col-md-8 equivalent (70.8% width) */
   .homepage-template .section.sidebar-layout .tabs-va-content-wrapper {
     float: left;
-    width: 70.8%;
+    width: 69%;
     box-sizing: border-box;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin: 0;
   }
 
   /* Sidebar area - col-md-4 equivalent (29.2% width) */
   .homepage-template .section.sidebar-layout .columns-va-sidebar-wrapper {
     float: left;
-    width: 29.2%;
+    width: 31%;
     box-sizing: border-box;
     padding: 0;
     margin: 0;

@@ -1,163 +1,324 @@
-/* VA Sidebar Columns - Connect with VHA + Resources layout */
-
-/* VA Design System Colors */
-.columns-va-sidebar {
-  --va-sidebar-bg: #f0f0f0;
-  --va-sidebar-border: #ddd;
-  --va-sidebar-text: #333;
-  --va-sidebar-link: #004795;
-  --va-sidebar-heading: #003366;
-}
+/* VA Sidebar - Connect with VHA + Resources - Matching Main Site */
 
 .columns-va-sidebar {
-  background-color: var(--va-sidebar-bg);
-  padding: 24px;
-  margin: 32px 0;
+  padding: 0;
+  margin: 0;
 }
 
 .columns-va-sidebar > div {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0;
 }
 
-/* Stack vertically - Resources below Connect with VHA */
-.columns-va-sidebar > div > div:first-child {
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--va-sidebar-border);
+/* Widget boxes - matching .widget class */
+.columns-va-sidebar > div > div {
+  max-height: 100%;
+  border: 4px solid #e0e9f0;
+  margin: 8px;
+  padding: 0;
+  background: #ffffff;
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 100%);
 }
 
-.columns-va-sidebar > div > div:last-child {
-  padding-top: 4px;
+.columns-va-sidebar > div > div::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-/* Headings */
-.columns-va-sidebar h3,
-.columns-va-sidebar h4 {
-  color: var(--va-sidebar-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 16px 0;
+/* Widget title wrapper */
+.columns-va-sidebar .widget-title {
+  margin: 0;
+  padding: 0;
+}
+
+/* Widget title - h4 headings */
+.columns-va-sidebar .widget-title h4 {
+  color: #003f72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 8px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  text-align: center;
+  background: transparent;
+}
+
+/* h3 default styling if needed */
+.columns-va-sidebar .widget-title h3 {
+  color: #003f72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  padding: 8px;
+  text-transform: uppercase;
+  text-align: center;
+  background: transparent;
+}
+
+/* Fallback for h4/h3 without widget-title wrapper */
+.columns-va-sidebar h4,
+.columns-va-sidebar h3 {
+  color: #003f72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 8px;
+  text-transform: uppercase;
+  text-align: center;
+  background: transparent;
+}
+
+/* Social media section - two column layout */
+.columns-va-sidebar .va-sidebar-connect {
+  overflow: hidden;
+  padding: 8px;
+}
+
+/* Widget social wrapper */
+.columns-va-sidebar #widget-social {
+  display: block;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.columns-va-sidebar #widget-social::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Left column - auto width, floated left */
+.columns-va-sidebar .widget-social-col-l {
+  width: auto;
+  float: left;
+  margin: 0 8px 0 0;
+  display: block;
+}
+
+/* Right column - auto width, floated left */
+.columns-va-sidebar .widget-social-col-r {
+  width: auto;
+  float: left;
+  margin: 0;
+  display: block;
+}
+
+/* Paragraphs inside social columns */
+.columns-va-sidebar .widget-social-col-l p,
+.columns-va-sidebar .widget-social-col-r p {
+  margin: 0 0 8px 0;
+  padding: 0;
+  display: block;
+}
+
+/* Social media link styling */
+.columns-va-sidebar #widget-social p a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.columns-va-sidebar #widget-social p a:hover {
+  text-decoration: underline;
 }
 
 /* Social media icons */
-.columns-va-sidebar .va-sidebar-connect p {
-  margin: 0 0 12px 0;
-  line-height: 1.6;
-}
-
-.columns-va-sidebar a.va-sidebar-social-link {
-  display: inline-block;
-  margin: 0 8px 8px 0;
-}
-
-.columns-va-sidebar a.va-sidebar-social-link img {
-  width: 32px;
+.columns-va-sidebar #widget-social p a img {
+  width: auto;
   height: 32px;
-  object-fit: contain;
-  transition: opacity 0.2s;
+  display: block;
+  flex-shrink: 0;
 }
 
-.columns-va-sidebar a.va-sidebar-social-link:hover img {
-  opacity: 0.8;
+/* Platform specific colors */
+.columns-va-sidebar #widget-social a[href*="facebook"] {
+  color: #3b5998;
 }
 
-/* Contact info */
-.columns-va-sidebar .va-sidebar-connect strong {
-  font-weight: 600;
-  color: var(--va-sidebar-text);
+.columns-va-sidebar #widget-social a[href*="twitter"],
+.columns-va-sidebar #widget-social a[href*="x.com"] {
+  color: #000;
+}
+
+.columns-va-sidebar #widget-social a[href*="instagram"] {
+  color: #c13584;
+}
+
+.columns-va-sidebar #widget-social a[href*="blog"] {
+  color: #ff6600;
+}
+
+.columns-va-sidebar #widget-social a[href*="youtube"] {
+  color: #ff0000;
+}
+
+.columns-va-sidebar #widget-social a[href*="flickr"] {
+  color: #0063dc;
+}
+
+/* Widget email section wrapper */
+.columns-va-sidebar #widget-email {
+  clear: both;
+  margin: 8px 0;
+  width: 100%;
+}
+
+/* Subscribe section text */
+.columns-va-sidebar #widget-email p,
+.columns-va-sidebar #widget-email {
+  font-size: 0.9em;
+  font-weight: normal;
+  margin: 8px 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Email form styling */
+.columns-va-sidebar input[type="email"],
+.columns-va-sidebar input[type="text"] {
+  width: 110px;
+  padding: 6px;
+  border: 1px solid #999;
+  font-size: 0.8rem;
+  margin: 0 4px 8px 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.columns-va-sidebar button,
+.columns-va-sidebar input[type="submit"],
+.columns-va-sidebar input[type="image"] {
+  padding: 6px 12px;
+  background: #e0e0e0;
+  border: 1px solid #999;
+  color: #333;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.columns-va-sidebar button:hover,
+.columns-va-sidebar input[type="submit"]:hover {
+  background: #d0d0d0;
+}
+
+/* Contact information list - outside widget sections */
+.columns-va-sidebar .va-sidebar-connect > ul,
+.columns-va-sidebar .va-sidebar-connect ul:not(.va-sidebar-list) {
+  list-style: none;
+  margin: 12px 0 8px 0;
+  padding: 0;
+  clear: both;
+  width: 100%;
+}
+
+.columns-va-sidebar .va-sidebar-connect > ul li,
+.columns-va-sidebar .va-sidebar-connect ul:not(.va-sidebar-list) li {
+  font-size: 0.85em;
+  color: #333;
+  margin: 0 0 10px 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.columns-va-sidebar .va-sidebar-connect ul li strong {
+  font-weight: 700;
+}
+
+.columns-va-sidebar .va-sidebar-connect a:not([href*="facebook"]):not([href*="twitter"]):not([href*="x.com"]):not([href*="instagram"]):not([href*="youtube"]):not([href*="flickr"]):not([href*="blog"]) {
+  color: #004795;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.columns-va-sidebar .va-sidebar-connect a:not([href*="facebook"]):not([href*="twitter"]):not([href*="x.com"]):not([href*="instagram"]):not([href*="youtube"]):not([href*="flickr"]):not([href*="blog"]):hover {
+  text-decoration: underline;
+}
+
+.columns-va-sidebar .va-sidebar-resources h4 {
+  color: #003f72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 8px;
+}
+
+.columns-va-sidebar .va-sidebar-resources h3 {
+  color: #003f72;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 8px;
 }
 
 /* Resources list */
 .columns-va-sidebar ul.va-sidebar-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 8px 8px 8px;
 }
 
 .columns-va-sidebar ul.va-sidebar-list li {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2e2e2e;
+  list-style-type: none;
+  display: block;
+  float: left;
+  padding: 6px;
   margin: 0;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--va-sidebar-border);
-}
-
-.columns-va-sidebar ul.va-sidebar-list li:last-child {
-  border-bottom: none;
+  width: 100%;
 }
 
 .columns-va-sidebar ul.va-sidebar-list a {
-  color: var(--va-sidebar-link);
+  color: #004795;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 12px;
+  line-height: 1.6;
+  display: block;
+}
+
+.columns-va-sidebar ul.va-sidebar-list a:visited {
+  color: #7d478a;
+  text-decoration: none;
 }
 
 .columns-va-sidebar ul.va-sidebar-list a:hover {
   text-decoration: underline;
 }
 
-/* Regular links */
-.columns-va-sidebar a:not(.va-sidebar-social-link) {
-  color: var(--va-sidebar-link);
-  text-decoration: none;
-}
-
-.columns-va-sidebar a:not(.va-sidebar-social-link):hover {
-  text-decoration: underline;
-}
-
-/* Social media icon links - styled as colored buttons */
-.columns-va-sidebar p a[href*="facebook"],
-.columns-va-sidebar p a[href*="twitter"],
-.columns-va-sidebar p a[href*="x.com"],
-.columns-va-sidebar p a[href*="instagram"],
-.columns-va-sidebar p a[href*="youtube"],
-.columns-va-sidebar p a[href*="flickr"],
-.columns-va-sidebar p a[href*="blogs.va.gov"] {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 4px 4px 4px 0;
-  border-radius: 4px;
-  color: #fff !important;
-  text-decoration: none !important;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: opacity 0.2s;
-}
-
-.columns-va-sidebar p a[href*="facebook"] {
-  background-color: #1877f2;
-}
-
-.columns-va-sidebar p a[href*="twitter"],
-.columns-va-sidebar p a[href*="x.com"] {
-  background-color: #000;
-}
-
-.columns-va-sidebar p a[href*="instagram"] {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-}
-
-.columns-va-sidebar p a[href*="youtube"] {
-  background-color: #ff0000;
-}
-
-.columns-va-sidebar p a[href*="flickr"] {
-  background-color: #0063dc;
-}
-
-.columns-va-sidebar p a[href*="blogs.va.gov"] {
-  background-color: #003366;
-}
-
-.columns-va-sidebar p a[href*="facebook"]:hover,
-.columns-va-sidebar p a[href*="twitter"]:hover,
-.columns-va-sidebar p a[href*="x.com"]:hover,
-.columns-va-sidebar p a[href*="instagram"]:hover,
-.columns-va-sidebar p a[href*="youtube"]:hover,
-.columns-va-sidebar p a[href*="flickr"]:hover,
-.columns-va-sidebar p a[href*="blogs.va.gov"]:hover {
-  opacity: 0.85;
-  text-decoration: none !important;
+/* Responsive */
+@media (max-width: 768px) {
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="facebook"]),
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="twitter"]),
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="x.com"]),
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="instagram"]),
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="blog"]),
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="youtube"]),
+  .columns-va-sidebar .va-sidebar-connect p:has(a[href*="flickr"]) {
+    width: 50%;
+    float: left;
+  }
 }
