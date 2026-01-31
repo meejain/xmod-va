@@ -1095,6 +1095,17 @@ div.badge a img {
     clear: both;
   }
 
+  /* Swoosh decorative element above carousel */
+  .homepage-template #swoosh {
+    background: url('https://main--xmod-va--meejain.aem.page/assets/media_167f940a35bae5eac413a7a2b704d01fb626395f8.png') no-repeat right 0 transparent;
+    position: relative;
+    z-index: 8;
+    float: left;
+    height: 56px;
+    width: 100%;
+    margin: -25px 0px -28px;
+  }
+
   /* Basic container styling for middle sections */
   .homepage-template .basicContainer {
     background: #ffffff;

@@ -232,6 +232,17 @@ export default async function decorate(doc) {
   // Move main content into right column
   rightFill.appendChild(main);
   
+  // Add swoosh div above carousel-va-news
+  const carouselWrapper = main.querySelector('.carousel-va-news-wrapper');
+  if (carouselWrapper) {
+    const swoosh = document.createElement('div');
+    swoosh.id = 'swoosh';
+    carouselWrapper.insertAdjacentElement('beforebegin', swoosh);
+    
+    // eslint-disable-next-line no-console
+    console.log('Added swoosh element above carousel');
+  }
+  
   // Find all sections with class "middle" and group them in tabs-va-content-wrapper
   const middleSections = main.querySelectorAll('.section.middle');
   const tabsWrapper = main.querySelector('.tabs-va-content-wrapper');
