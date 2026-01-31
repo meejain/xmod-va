@@ -177,14 +177,17 @@
 }
 
 /* Subscribe section text */
-.columns-va-sidebar #widget-email p,
-.columns-va-sidebar #widget-email {
+.columns-va-sidebar #widget-email p {
   font-size: 0.9em;
   font-weight: normal;
-  margin: 8px 0;
-  padding: 0;
+  margin: 0 0 6px 0;
+  padding: 0 8px;
   color: #333;
   line-height: 1.4;
+}
+
+.columns-va-sidebar #widget-email p:first-of-type {
+  margin-top: 0;
 }
 
 /* Email form styling */
@@ -307,6 +310,67 @@
 
 .columns-va-sidebar ul.va-sidebar-list a:hover {
   text-decoration: underline;
+}
+
+/* Email subscription form */
+.columns-va-sidebar #widget-email form {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px;
+  margin-bottom: 12px;
+  flex-wrap: nowrap;
+}
+
+.columns-va-sidebar #widget-email input.inputstyle {
+  flex: 1;
+  min-width: 0;
+  padding: 6px;
+  margin-bottom: 0;
+  border: 1px solid #ccc;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.columns-va-sidebar #widget-email #widget-email-Button {
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.columns-va-sidebar #widget-email input.form_button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  display: inline-block;
+}
+
+/* Contact info paragraphs after form */
+.columns-va-sidebar #widget-email p strong {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Links in contact section - remove button styling */
+.columns-va-sidebar #widget-email a,
+.columns-va-sidebar .va-sidebar-connect p a:not([href*="facebook"]):not([href*="twitter"]):not([href*="x.com"]):not([href*="instagram"]):not([href*="youtube"]):not([href*="flickr"]):not([href*="blog"]) {
+  color: #004795 !important;
+  text-decoration: none !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: 13px;
+  display: inline;
+}
+
+.columns-va-sidebar #widget-email a:hover {
+  color: #003f72 !important;
+  text-decoration: underline !important;
 }
 
 /* Responsive */
