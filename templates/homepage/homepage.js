@@ -241,9 +241,10 @@ export default async function decorate(doc) {
     const middleContentContainer = document.createElement('div');
     middleContentContainer.className = 'middle-content-container';
     
-    // Move all middle sections into the container
+    // Move all middle sections into the container and add basicContainer class
     middleSections.forEach(section => {
       section.remove();
+      section.classList.add('basicContainer');
       middleContentContainer.appendChild(section);
     });
     
@@ -251,7 +252,7 @@ export default async function decorate(doc) {
     tabsWrapper.appendChild(middleContentContainer);
     
     // eslint-disable-next-line no-console
-    console.log(`Moved ${middleSections.length} middle section(s) into tabs-va-content-wrapper`);
+    console.log(`Moved ${middleSections.length} middle section(s) into tabs-va-content-wrapper with basicContainer class`);
   }
   
   rightCol.appendChild(rightFill);
