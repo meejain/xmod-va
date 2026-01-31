@@ -85,7 +85,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  /* Remove fixed height to allow header to size naturally */
 }
 
 header .header,

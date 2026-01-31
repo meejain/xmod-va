@@ -276,7 +276,13 @@ export default async function decorate(doc) {
   bgMain.appendChild(bgMiddleEffect);
 
   // Insert the new structure into the body
-  doc.body.insertBefore(bgMain, doc.body.firstChild);
+  // Check if header exists and insert after it, otherwise insert as first child
+  const header = doc.querySelector('header');
+  if (header && header.parentNode === doc.body) {
+    header.insertAdjacentElement('afterend', bgMain);
+  } else {
+    doc.body.insertBefore(bgMain, doc.body.firstChild);
+  }
 
   // Add homepage-template class to body
   doc.body.classList.add('homepage-template');

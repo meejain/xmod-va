@@ -119,11 +119,17 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  // VA.gov 4-row structure: banner, crisis, brand (logo + tools), sections (main nav)
-  const classes = ['banner', 'crisis', 'brand', 'sections'];
+  // Handle 3-section structure: brand (banner+crisis+logo), sections (main nav), tools
+  const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
+    if (section) {
+      section.classList.add(`nav-${c}`);
+      // Remove section class and display:none that was added by decorateSections
+      section.classList.remove('section');
+      section.removeAttribute('data-section-status');
+      section.style.display = '';
+    }
   });
 
   const navBrand = nav.querySelector('.nav-brand');

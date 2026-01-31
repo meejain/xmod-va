@@ -4,6 +4,12 @@
   background: #003161;
 }
 
+/* Add spacing for sticky header */
+.homepage-template #bg-main {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 /* Breadcrumb styling - targets first paragraph in carousel section */
 .homepage-template .carousel-va-news-container > .default-content-wrapper > p:first-child {
   font-size: 12px;
