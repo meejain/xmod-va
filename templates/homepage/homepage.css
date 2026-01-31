@@ -71,7 +71,7 @@
 /* Background container */
 .homepage-template #bg-main {
   min-width: 320px;
-  background: url("/va_files/2014/responsive/images/bg-top-effect.png") #000B34 no-repeat scroll center top;
+  background: url("https://main--xmod-va--meejain.aem.page/assets/media_14c89ddbc9378d4c75f2913b28c121c0738b83729.png") #000B34 no-repeat scroll center top;
 }
 
 /* Middle effect background */
@@ -114,7 +114,7 @@
 
 /* Left Navigation Container */
 .homepage-template #leftNavContainer {
-  background: url("/va_files/2014/responsive/images/gray_nav_bkgd.png") left top repeat-x #EEEEEE;
+  background: url("https://main--xmod-va--meejain.aem.page/assets/media_1cf03723161d2d1012a5be8cc527c67c4308d6ddf.png") left top repeat-x #EEEEEE;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -166,7 +166,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0;
-  background: url("/va_files/2014/responsive/images/gray_nav_bkgd.png") left top repeat-x;
+  background: url("https://main--xmod-va--meejain.aem.page/assets/media_1cf03723161d2d1012a5be8cc527c67c4308d6ddf.png") left top repeat-x;
   margin: 0;
 }
 
@@ -298,7 +298,6 @@
 }
 
 #widget-locator {
-  background: url(/va_files/2014/responsive/images/bg-locator.png) no-repeat left top transparent;
   overflow: hidden;
   min-height: 120px;
   position: relative;
@@ -614,7 +613,7 @@ div.badge a img {
   }
 
   .homepage-template .row {
-    background: url("/va_files/2014/responsive/images/bg-content.png") repeat-y 0 0 #FFFFFF;
+    background: url("https://main--xmod-va--meejain.aem.live/assets/media_1ddbde175b5348e13d62a2e47af23d0a3fb5f5c61.png") repeat-y 0 0 #FFFFFF;
   }
 
   .homepage-template .col-md-3 {
@@ -645,7 +644,7 @@ div.badge a img {
   }
 
   .homepage-template .row {
-    background: url("/va_files/2014/responsive/images/bg-content.png") repeat-y 0 0 #FFFFFF;
+    background: url("https://main--xmod-va--meejain.aem.live/assets/media_1ddbde175b5348e13d62a2e47af23d0a3fb5f5c61.png") repeat-y 0 0 #FFFFFF;
   }
 }
 
@@ -873,7 +872,6 @@ div.badge a img {
 }
 
 .homepage-template #widget-locator {
-  background: url(/va_files/2014/responsive/images/bg-locator.png) no-repeat left top transparent;
   overflow: hidden;
 }
 
