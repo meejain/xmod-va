@@ -133,7 +133,15 @@ function buildMegaMenu(navItem) {
   // Process each category in the submenu
   const categories = subMenu.querySelectorAll(':scope > li');
   categories.forEach((category, index) => {
-    const categoryText = category.childNodes[0]?.textContent?.trim() || '';
+    // Extract category text - check for <p> tag first, then text node
+    let categoryText = '';
+    const pTag = category.querySelector(':scope > p');
+    if (pTag) {
+      categoryText = pTag.textContent.trim();
+    } else {
+      categoryText = category.childNodes[0]?.textContent?.trim() || '';
+    }
+    
     const categoryLink = category.querySelector(':scope > a');
     const categorySubMenu = category.querySelector(':scope > ul');
 
@@ -498,17 +506,33 @@ export default async function decorate(block) {
         }
 
         // Create button for the nav item
-        const navText = navItem.childNodes[0]?.textContent?.trim() || '';
+        // Find the text - it might be in a <p> tag or text node
+        let navText = '';
+        let textElement = null;
+        
+        // Check for <p> tag first
+        const pTag = navItem.querySelector(':scope > p');
+        if (pTag) {
+          navText = pTag.textContent.trim();
+          textElement = pTag;
+        } else {
+          // Fallback to text node
+          navText = navItem.childNodes[0]?.textContent?.trim() || '';
+        }
+
         const navButton = document.createElement('button');
         navButton.classList.add('nav-drop-button');
         navButton.setAttribute('type', 'button');
         navButton.setAttribute('aria-expanded', 'false');
         navButton.innerHTML = `${navText} <span class="nav-drop-arrow"></span>`;
 
-        // Insert button before the mega menu panel
+        // Insert button at the beginning
         navItem.insertBefore(navButton, navItem.firstChild);
-        // Remove the original text node
-        if (navItem.childNodes[1]?.nodeType === Node.TEXT_NODE) {
+        
+        // Remove the original text element (either <p> tag or text node)
+        if (textElement) {
+          textElement.remove();
+        } else if (navItem.childNodes[1]?.nodeType === Node.TEXT_NODE) {
           navItem.childNodes[1].remove();
         }
 
