@@ -555,6 +555,15 @@ export default async function decorate(block) {
           const megaPanel = navItem.querySelector('.mega-menu-panel');
           if (megaPanel) {
             megaPanel.classList.toggle('active', !expanded);
+            
+            // Position mega menu to align with first nav item
+            if (!expanded) {
+              const firstNavItem = mainNavItems[0];
+              const navItemRect = navItem.getBoundingClientRect();
+              const firstNavItemRect = firstNavItem.getBoundingClientRect();
+              const offset = firstNavItemRect.left - navItemRect.left;
+              megaPanel.style.left = `${offset - 4}px`;
+            }
           }
         });
       }

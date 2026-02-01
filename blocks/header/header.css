@@ -953,6 +953,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   border-radius: 0;
   transition: background-color 0.2s ease, border 0.2s ease;
   -webkit-font-smoothing: antialiased;
+  margin: 0;
 }
 
 .nav-drop-button:hover {
@@ -988,8 +989,8 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 .mega-menu-panel {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 4px);
+  left: 2px;
   background-color: #fff;
   box-shadow: 0 7px 25px -11px #000;
   z-index: 1000;
