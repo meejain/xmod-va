@@ -402,6 +402,15 @@ export default async function decorate(block) {
     // Wrap logo and tools in a container div for better flex layout
     const contentWrapper = navBrand.querySelector('.default-content-wrapper');
     if (contentWrapper) {
+      // Wrap the banner (first paragraph) in its own centered div
+      const banner = contentWrapper.querySelector('p:first-child');
+      if (banner) {
+        const bannerWrapper = document.createElement('div');
+        bannerWrapper.classList.add('banner-content-wrapper');
+        contentWrapper.insertBefore(bannerWrapper, banner);
+        bannerWrapper.appendChild(banner);
+      }
+
       const logo = contentWrapper.querySelector('p:nth-child(3)');
       const tools = contentWrapper.querySelector('ul');
 

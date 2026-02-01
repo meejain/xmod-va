@@ -171,14 +171,23 @@ footer .footer-logo {
   padding: 24px 20px 16px;
 }
 
-footer .footer-logo p {
+/* Logo content wrapper - centered with max-width */
+footer .footer-logo-content {
   max-width: 1024px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-footer .footer-logo img {
+footer .footer-logo-content picture {
+  display: flex;
+}
+
+footer .footer-logo-content img {
   width: 200px;
   height: auto;
+  display: block;
 }
 
 /* Legal Links Section - Dark blue background */
@@ -270,7 +279,7 @@ footer img {
     font-size: 15px;
   }
 
-  footer .footer-logo img {
+  footer .footer-logo-content img {
     width: 180px;
   }
 

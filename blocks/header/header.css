@@ -61,12 +61,24 @@ header nav .nav-brand .logo-tools-wrapper {
   }
 }
 
+/* ===== Banner Content Wrapper ===== */
+/* Wrapper for the banner paragraph to center content within 959px */
+header nav .nav-brand .banner-content-wrapper {
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+header nav .nav-brand .banner-content-wrapper > p {
+  max-width: 959px;
+  margin: 0 auto;
+  padding: 5.5px 24px;
+}
+
 /* ===== Government Banner (Top Gray Bar) ===== */
 /* This matches: .va-notice--banner .usa-banner-header */
 /* Production: full-width gray bar with centered content */
-header nav .nav-brand > .default-content-wrapper > p:first-child {
+header nav .nav-brand .banner-content-wrapper > p:first-child {
   /* Full-width gray background */
-  background-color: #f0f0f0;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
   font-weight: 400;
   color: #1b1b1b;
@@ -74,9 +86,6 @@ header nav .nav-brand > .default-content-wrapper > p:first-child {
   /* Mobile: 12px font */
   font-size: 12px;
   
-  /* Full width bar, no side margin */
-  margin: 0;
-  width: 100%;
   min-height: 34px;
   
   /* Flexbox for alignment */
@@ -84,23 +93,18 @@ header nav .nav-brand > .default-content-wrapper > p:first-child {
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  
-  /* Padding simulates centered content within max-width */
-  padding: 5.5px 24px;
 }
 
 /* On larger screens, use calc to center content within 1000px (100rem) */
 @media screen and (min-width: 1048px) {
-  header nav .nav-brand > .default-content-wrapper > p:first-child {
+  header nav .nav-brand .banner-content-wrapper > p:first-child {
     justify-content: flex-start;
-    padding-left: calc((100vw - 1000px) / 2 + 24px);
-    padding-right: calc((100vw - 1000px) / 2 + 24px);
   }
 }
 
 /* Desktop: larger font, adjusted padding */
 @media screen and (min-width: 481px) {
-  header nav .nav-brand > .default-content-wrapper > p:first-child {
+  header nav .nav-brand .banner-content-wrapper > p:first-child {
     font-size: 15px;
     padding-top: 0;
     padding-bottom: 0;
@@ -108,7 +112,7 @@ header nav .nav-brand > .default-content-wrapper > p:first-child {
 }
 
 /* US Flag icon (production uses 20x20px img) */
-header nav .nav-brand > .default-content-wrapper > p:first-child::before {
+header nav .nav-brand .banner-content-wrapper > p:first-child::before {
   content: '';
   display: inline-block;
   width: 20px;
@@ -122,7 +126,7 @@ header nav .nav-brand > .default-content-wrapper > p:first-child::before {
 }
 
 @media screen and (min-width: 481px) {
-  header nav .nav-brand > .default-content-wrapper > p:first-child::before {
+  header nav .nav-brand .banner-content-wrapper > p:first-child::before {
     margin-right: 7px;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -130,7 +134,7 @@ header nav .nav-brand > .default-content-wrapper > p:first-child::before {
 }
 
 /* "Here's how you know" link/button styling */
-header nav .nav-brand > .default-content-wrapper > p:first-child a {
+header nav .nav-brand .banner-content-wrapper > p:first-child a {
   color: #005ea2;
   text-decoration: underline;
   font-size: 12px;
@@ -139,12 +143,12 @@ header nav .nav-brand > .default-content-wrapper > p:first-child a {
 }
 
 @media screen and (min-width: 481px) {
-  header nav .nav-brand > .default-content-wrapper > p:first-child a {
+  header nav .nav-brand .banner-content-wrapper > p:first-child a {
     font-size: 15px;
   }
 }
 
-header nav .nav-brand > .default-content-wrapper > p:first-child a:hover {
+header nav .nav-brand .banner-content-wrapper > p:first-child a:hover {
   color: #1a4480;
   background-color: rgba(0, 0, 0, 0.05);
 }

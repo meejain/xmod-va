@@ -151,7 +151,13 @@ export default async function decorate(block) {
   if (logoSection) {
     const logoDiv = document.createElement('div');
     logoDiv.classList.add('footer-logo');
-    logoDiv.appendChild(logoSection);
+    
+    // Wrap logo content in a centered container
+    const logoContent = document.createElement('div');
+    logoContent.classList.add('footer-logo-content');
+    logoContent.appendChild(logoSection);
+    
+    logoDiv.appendChild(logoContent);
     footer.appendChild(logoDiv);
   }
 
