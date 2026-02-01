@@ -107,10 +107,22 @@
   position: relative;
 }
 
-/* Mobile: Ensure no horizontal overflow */
+/* Mobile: Use flexbox to reorder content - carousel appears before accordion */
 @media (max-width: 959px) {
   .homepage-template .row {
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Carousel/main content appears first on mobile */
+  .homepage-template .col-md-9 {
+    order: 1;
+  }
+  
+  /* Left navigation (accordion) appears after carousel on mobile */
+  .homepage-template .col-md-3 {
+    order: 2;
   }
 }
 
@@ -148,13 +160,16 @@
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;
-  /* Reserve minimum space to prevent CLS - mobile needs less */
-  min-height: 200px;
+  /* Reserve minimum space to prevent CLS */
+  min-height: 400px;
 }
 
-@media (min-width: 768px) {
+/* Mobile: Reduce min-height since navigation now appears after carousel */
+@media (max-width: 959px) {
   .homepage-template #leftNavContainer {
-    min-height: 400px;
+    min-height: 0;
+    /* Add top margin for spacing after carousel */
+    margin-top: 20px;
   }
 }
 
@@ -205,15 +220,8 @@
   padding: 0;
   background: url("https://main--xmod-va--meejain.aem.page/assets/media_1cf03723161d2d1012a5be8cc527c67c4308d6ddf.png") left top repeat-x;
   margin: 0;
-  /* Reserve space to prevent CLS - increased for mobile */
+  /* Reserve space to prevent CLS */
   min-height: 88px;
-}
-
-/* Reserve more space on mobile where dropdown is taller */
-@media (max-width: 959px) {
-  .homepage-template .dropdown-va-persona-wrapper {
-    min-height: 65px;
-  }
 }
 
 .homepage-template .dropdown-va-persona {
@@ -233,8 +241,8 @@
   /* Show accordion on mobile - it should be visible */
   .homepage-template #leftNavContainer .accordion-va-menu-wrapper {
     display: block;
-    /* Reserve space to prevent CLS */
-    min-height: 100px;
+    /* Reduced min-height since it's now below carousel */
+    min-height: 50px;
   }
 
   /* Hide left column content (Quick Links, widgets, etc.) on mobile */
@@ -259,6 +267,12 @@
     overflow-x: hidden;
     max-width: 100vw;
   }
+  
+  /* Hide dropdown on mobile since carousel comes first now */
+  .homepage-template .dropdown-va-persona-wrapper {
+    display: none;
+  }
+}
   
   /* Constrain sections on mobile */
   .homepage-template .section {
