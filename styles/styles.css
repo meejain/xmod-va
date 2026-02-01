@@ -98,6 +98,15 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* CRITICAL CLS FIX: Hide main sections for template pages until template restructures DOM */
+body.homepage main .section {
+  visibility: hidden;
+}
+
+body.homepage.template-loaded main .section {
+  visibility: visible;
+}
+
 h1,
 h2,
 h3,

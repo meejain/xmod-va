@@ -6,17 +6,6 @@ export default async function decorate(doc) {
     return;
   }
 
-  // CRITICAL: Temporarily hide the sections being restructured to prevent CLS
-  const sections = main.querySelectorAll('.section');
-  const originalVisibility = Array.from(sections).map(s => ({
-    section: s,
-    visibility: s.style.visibility,
-    display: s.style.display
-  }));
-  sections.forEach(s => {
-    s.style.visibility = 'hidden';
-  });
-
   // Find the dropdown and accordion block wrappers (not just the blocks)
   const dropdownWrapper = main.querySelector('.dropdown-va-persona-wrapper');
   const accordionWrapper = main.querySelector('.accordion-va-menu-wrapper');
@@ -298,12 +287,10 @@ export default async function decorate(doc) {
   // Add homepage-template class to body
   doc.body.classList.add('homepage-template');
 
-  // CRITICAL: Restore visibility after restructuring complete
+  // CRITICAL CLS FIX: Signal that template has finished restructuring
+  // This triggers CSS to show sections (they were hidden to prevent CLS)
   requestAnimationFrame(() => {
-    originalVisibility.forEach(({ section, visibility, display }) => {
-      section.style.visibility = visibility;
-      section.style.display = display;
-    });
+    doc.body.classList.add('template-loaded');
   });
 
   // eslint-disable-next-line no-console
