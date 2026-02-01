@@ -10,6 +10,13 @@
   min-height: 255px;
 }
 
+/* Mobile: Allow more space for full images */
+@media (max-width: 767px) {
+  .carousel-va-news {
+    min-height: 300px;
+  }
+}
+
 /* Scrollable container - the main viewport */
 .carousel-va-news .carousel-va-news-slides-container {
   background: #0174B2; /* Solid color immediately visible */
@@ -42,7 +49,7 @@
   display: none;
 }
 
-/* Individual slide */
+/* Individual slide - default wide for desktop/tablet */
 .carousel-va-news .carousel-va-news-slide {
   width: 640px;
   min-width: 640px;
@@ -50,6 +57,14 @@
   position: relative;
   flex-shrink: 0;
   height: 255px; /* Match container height */
+}
+
+/* Mobile: Full width slides to fit screen */
+@media (max-width: 767px) {
+  .carousel-va-news .carousel-va-news-slide {
+    width: 100vw;
+    min-width: 100vw;
+  }
 }
 
 /* Slide image container */
@@ -217,12 +232,12 @@
   /* Container should expand to fit both image and text stacked */
   .carousel-va-news .carousel-va-news-slides-container {
     height: auto;
-    min-height: 255px;
+    min-height: 300px;
   }
   
   .carousel-va-news .carousel-va-news-slides {
     height: auto;
-    min-height: 255px;
+    min-height: 300px;
   }
   
   /* Individual slide should stack vertically */
@@ -232,16 +247,23 @@
     flex-direction: column;
   }
   
-  /* Image takes full width and has fixed height */
+  /* Image takes full width and auto height to show complete image */
   .carousel-va-news .carousel-va-news-slide-image {
     width: 100%;
-    height: 200px;
+    height: auto;
+    min-height: 180px;
+    max-height: 250px;
     float: none;
     order: 1;
   }
   
+  /* Show complete image on mobile - no cropping */
   .carousel-va-news .carousel-va-news-slide-image img {
-    height: 200px;
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    object-position: center;
   }
   
   /* Text content below image */
