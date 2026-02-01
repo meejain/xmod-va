@@ -468,7 +468,6 @@ header nav .nav-brand .logo-tools-wrapper > ul a {
   align-items: stretch;
   width: 100%;
   flex-direction: row;
-  gap: .5vw;
 }
 
 /* Search input field */
@@ -503,6 +502,7 @@ header nav .nav-brand .logo-tools-wrapper > ul a {
   margin-right: 4px;
   min-width: 40px;
   flex-shrink: 0;
+  margin: 0;
 }
 
 .search-submit-btn:hover {
