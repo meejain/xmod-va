@@ -37,6 +37,22 @@ function buildHeroBlock(main) {
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
+  // Preload critical fonts to reduce CLS from font swapping
+  const preloadFonts = [
+    `${window.hlx.codeBasePath}/fonts/source-sans-pro-bold.woff2`,
+    `${window.hlx.codeBasePath}/fonts/source-sans-pro-regular.woff2`,
+  ];
+  
+  preloadFonts.forEach(fontUrl => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'font';
+    link.type = 'font/woff2';
+    link.crossOrigin = 'anonymous';
+    link.href = fontUrl;
+    document.head.appendChild(link);
+  });
+  
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
@@ -147,25 +163,38 @@ async function loadEager(doc) {
   const templateName = getMetadata('template');
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
-  if (main) {
+  
+  // CRITICAL CLS FIX: For template pages, load template CSS first (before showing content)
+  if (templateName && main) {
+    // Load template CSS immediately to prevent unstyled content flash
+    const templateCSSPromise = loadCSS(
+      `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`
+    );
+    
+    decorateMain(main);
+    document.body.classList.add('appear');
+    
+    // Wait for template CSS before loading sections
+    await templateCSSPromise;
+    
+    // Load first section with LCP image
+    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    
+    // Load ALL sections before running template
+    await loadSections(main);
+    await loadTemplate(doc, templateName);
+  } else if (main) {
+    // Non-template pages: normal flow
     decorateMain(main);
     document.body.classList.add('appear');
     
     // Load first section with LCP image
     await loadSection(main.querySelector('.section'), waitForFirstImage);
-    
-    // If there's a template, load ALL sections first before running template
-    if (templateName) {
-      await loadSections(main);
-      await loadTemplate(doc, templateName);
-    }
   }
 
   try {
-    /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
-    if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
-      loadFonts();
-    }
+    /* Always load fonts eagerly to reduce CLS - fonts use font-display: swap */
+    loadFonts();
   } catch (e) {
     // do nothing
   }

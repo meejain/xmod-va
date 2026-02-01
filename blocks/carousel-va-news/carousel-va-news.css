@@ -6,17 +6,27 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  /* Reserve space immediately to prevent CLS */
+  min-height: 255px;
+}
+
+/* Mobile: Allow more space for full images */
+@media (max-width: 767px) {
+  .carousel-va-news {
+    min-height: 300px;
+  }
 }
 
 /* Scrollable container - the main viewport */
 .carousel-va-news .carousel-va-news-slides-container {
-  background: none repeat scroll 0 0 #0174B2;
+  background: #0174B2; /* Solid color immediately visible */
   position: relative;
   overflow: hidden;
   width: 100%;
   z-index: 0;
   float: left;
   height: 255px; /* Fixed height like original */
+  min-height: 255px; /* Ensure minimum height to prevent CLS */
 }
 
 /* Slides wrapper - holds all slides */
@@ -39,14 +49,22 @@
   display: none;
 }
 
-/* Individual slide */
+/* Individual slide - default wide for desktop/tablet */
 .carousel-va-news .carousel-va-news-slide {
   width: 640px;
   min-width: 640px;
-  background-color: #01133F;
+  background-color: #0174b2;
   position: relative;
   flex-shrink: 0;
   height: 255px; /* Match container height */
+}
+
+/* Mobile: Full width slides to fit screen */
+@media (max-width: 767px) {
+  .carousel-va-news .carousel-va-news-slide {
+    width: 100vw;
+    min-width: 100vw;
+  }
 }
 
 /* Slide image container */
@@ -71,17 +89,14 @@
   object-position: center;
 }
 
-/* Slide text content overlay */
+/* Slide text content overlay - default for mobile */
 .carousel-va-news .carousel-va-news-slide-content {
   width: 100%;
-  z-index: 999;
+  position: relative;
+  z-index: 1;
   color: #FFF;
   background-color: #0174b2;
-}
-
-/* slider2 variant - more padding top */
-.carousel-va-news .carousel-va-news-slide-content {
-  padding-top: 30px;
+  padding: 16px 5px;
 }
 
 .carousel-va-news .carousel-va-news-slide-content h2 {
@@ -210,6 +225,68 @@
 
 .carousel-va-news .carousel-va-news-slide-indicators a.selected:hover {
   color: #fff;
+}
+
+/* ==================== MOBILE ONLY (below 768px) ==================== */
+@media only screen and (max-width: 767px) {
+  /* Container should expand to fit both image and text stacked */
+  .carousel-va-news .carousel-va-news-slides-container {
+    height: auto;
+    min-height: 300px;
+  }
+  
+  .carousel-va-news .carousel-va-news-slides {
+    height: auto;
+    min-height: 300px;
+  }
+  
+  /* Individual slide should stack vertically */
+  .carousel-va-news .carousel-va-news-slide {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Image takes full width and auto height to show complete image */
+  .carousel-va-news .carousel-va-news-slide-image {
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    max-height: 250px;
+    float: none;
+    order: 1;
+  }
+  
+  /* Show complete image on mobile - no cropping */
+  .carousel-va-news .carousel-va-news-slide-image img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    object-position: center;
+  }
+  
+  /* Text content below image */
+  .carousel-va-news .carousel-va-news-slide-content {
+    width: 100%;
+    position: relative;
+    order: 2;
+    padding: 16px 20px;
+    background-color: #0174b2;
+  }
+  
+  .carousel-va-news .carousel-va-news-slide-content h2 {
+    font-size: 16px;
+    padding: 0 0 8px 0;
+    margin: 0;
+  }
+  
+  .carousel-va-news .carousel-va-news-slide-content p {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+  }
 }
 
 /* ==================== TABLET AND DESKTOP (768px+) ==================== */

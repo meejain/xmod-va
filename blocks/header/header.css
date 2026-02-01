@@ -754,10 +754,327 @@ header nav .nav-sections > .default-content-wrapper > ul > li > ul > li > a:hove
   color: #1a4480;
 }
 
-/* ===== Tools Section (Search, Contact, Sign in) ===== */
-/* This matches: #login-root - production styling */
-/* Production: dark blue background extends full width, tools are right-aligned within centered container */
-header nav .nav-tools {
+/* Desktop: Hide mobile-only elements */
+@media (min-width: 960px) {
+  header nav .nav-sections .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Mobile: Style converted nav items as accordions */
+@media (max-width: 959px) {
+  /* Hide Search, Contact us, and Sign in on mobile */
+  header nav .nav-tools {
+    display: none !important;
+  }
+  
+  /* Hide logo-tools-wrapper > ul on mobile */
+  header nav .nav-brand .logo-tools-wrapper > ul {
+    display: none !important;
+  }
+  
+  /* Prevent horizontal overflow on mobile */
+  header {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  header nav {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Make nav-sections scrollable on mobile when menu is open */
+  header nav[aria-expanded='true'] .nav-sections {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  header nav .nav-sections {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Hide crisis line :before icon on mobile */
+  header nav .nav-brand > .default-content-wrapper > p:nth-child(2)::before {
+    display: none !important;
+  }
+  
+  /* Style nav-accordion-item to match accordion-va-menu-item */
+  header nav .nav-sections .nav-accordion-item details.accordion-va-menu-item {
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid #194570;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  header nav .nav-sections .nav-accordion-item details.accordion-va-menu-item:last-child {
+    border-bottom: none;
+  }
+  
+  header nav .nav-sections .nav-accordion-item summary.accordion-va-menu-item-label {
+    background: #003161;
+    color: #FDFDFD;
+    display: flex;
+    align-items: center;
+    font: 12px/22px Arial, sans-serif;
+    height: auto;
+    padding: 6px 10px 4px 36px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+    min-height: 36px;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s;
+    box-sizing: border-box;
+  }
+  
+  /* Arrow icon for nav accordion items */
+  header nav .nav-sections .nav-accordion-item summary.accordion-va-menu-item-label::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 9px;
+    background-image: url("https://www.va.gov/va_files/2014/responsive/images/closed.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  
+  header nav .nav-sections .nav-accordion-item details[open] summary.accordion-va-menu-item-label::before {
+    background-image: url("https://www.va.gov/va_files/2014/responsive/images/open.png");
+  }
+  
+  header nav .nav-sections .nav-accordion-item details[open] > summary.accordion-va-menu-item-label {
+    background: linear-gradient(to bottom, #0B5A92 0%, #003F72 100%);
+    color: white;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Style the accordion body */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body {
+    background: #E9EEF4;
+    padding: 0;
+  }
+  
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style for items with nested structure (VA Benefits and Health Care) */
+  /* Default styling for all top-level li items */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Hide borders for items that have nested ul */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li ul {
+    border-bottom: none;
+  }
+  
+  /* Hide category paragraph labels (Health care, Disability, etc.) */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > p {
+    display: none;
+  }
+  
+  /* Remove default styling from nested ul */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the actual menu items (nested li elements) */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li {
+    border-bottom: 1px solid #D0D0CE;
+    margin: 0;
+  }
+  
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Style links and strong elements inside nested items */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li > a {
+    display: block;
+    padding: 12px 36px 11px 36px;
+    color: #004E87;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #E9EEF4;
+  }
+  
+  /* Style strong elements (section headings) inside nested items */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li > strong {
+    display: block;
+    padding: 12px 36px 11px 36px;
+    color: #1B1B1B;
+    font-size: 13px;
+    line-height: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background: #D6DCE3;
+  }
+  
+  /* Hover states for nested items */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li:hover {
+    background: #d6dce3;
+  }
+  
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li > a:hover {
+    background: #d6dce3;
+    text-decoration: underline;
+  }
+  
+  /* Style for items with flat structure (About VA) - direct children */
+  /* All direct li items get border by default */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li {
+    border-bottom: 1px solid #D0D0CE;
+  }
+  
+  /* Remove border from items that have nested ul (they use nested borders instead) */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul {
+    /* Nested items handle their own borders */
+  }
+  
+  /* Remove border from last item */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li:last-child {
+    border-bottom: none;
+  }
+  
+  /* But restore border if there are nested items after */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul > li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Style direct strong elements (section headings in flat structure) */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > strong {
+    display: block;
+    padding: 12px 36px 11px 36px;
+    color: #1B1B1B;
+    font-size: 13px;
+    line-height: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background: #D6DCE3;
+  }
+  
+  /* Style direct links (in flat structure like About VA) */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > a {
+    display: block;
+    padding: 12px 36px 11px 36px;
+    color: #004E87;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #E9EEF4;
+  }
+  
+  /* Hover states for direct links */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li:hover {
+    background: #d6dce3;
+  }
+  
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > a:hover {
+    background: #d6dce3;
+    text-decoration: underline;
+  }
+  
+  /* Hide featured sections and images in mobile accordion */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body picture,
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body img {
+    display: none;
+  }
+  
+  /* Hide "Service members" and "Family and caregivers" button items */
+  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body .button-container {
+    display: none;
+  }
+  
+  /* Hide the desktop structure on mobile when converted */
+  header nav .nav-sections .mobile-accordion-converted > button.nav-drop-button {
+    display: none !important;
+  }
+  
+  header nav .nav-sections .mobile-accordion-converted > .mega-menu-panel {
+    display: none !important;
+  }
+  
+  header nav .nav-sections .mobile-accordion-converted > p {
+    display: none !important;
+  }
+  
+  header nav .nav-sections .mobile-accordion-converted > ul {
+    display: none !important;
+  }
+  
+  /* Show mobile-only elements on mobile */
+  header nav .nav-sections .mobile-only {
+    display: block;
+  }
+}
+  
+  /* Style items without submenu as accordion-like links */
+  header nav .nav-sections .mobile-accordion-converted.no-submenu {
+    border: none;
+    margin: 0;
+    border-bottom: 1px solid #194570;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  header nav .nav-sections .mobile-accordion-converted.no-submenu:last-child {
+    border-bottom: none;
+  }
+  
+  header nav .nav-sections .mobile-accordion-converted.no-submenu > a.nav-accordion-link {
+    background: #003161;
+    color: #FDFDFD;
+    display: flex;
+    align-items: center;
+    font: 12px/22px Arial, sans-serif;
+    height: auto;
+    padding: 6px 10px 4px 36px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+    min-height: 36px;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-sizing: border-box;
+  }
+  
+  header nav .nav-sections .mobile-accordion-converted.no-submenu > a.nav-accordion-link:hover {
+    background: linear-gradient(to bottom, #0B5A92 0%, #003F72 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* No arrow icon for non-expandable items */
+  header nav .nav-sections .mobile-accordion-converted.no-submenu > a.nav-accordion-link::before {
+    display: none;
+  }
+}
+
+/**
+ * Toggles the entire nav
+ * @param {Element} nav The container element
+ * @param {Element} navSections The nav sections within the container element
+ * @param {*} forceExpanded Optional param to force nav expand behavior when not null
+ */
+function toggleMenu(nav, navSections, forceExpanded = null) {
   background-color: #162e51;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
@@ -876,7 +1193,7 @@ header nav p {
 header nav .nav-hamburger {
   display: none;
   position: absolute;
-  top: 60px;
+  top: 50px;
   left: 16px;
   z-index: 10;
 }

@@ -5,6 +5,8 @@
   padding: 0;
   overflow: visible;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .tabs-va-content .tabs-va-content-list {
@@ -15,6 +17,7 @@
   display: block;
   overflow: visible;
   background: transparent;
+  max-width: 100%;
 }
 
 /* Mobile-first: Stacked tabs */
@@ -22,12 +25,13 @@
   font-size: 14px;
   display: block;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
+  min-height: 40px;
+  height: auto;
+  line-height: 1.4;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   color: #666;
-  padding: 0 10px;
   margin: 0 0 -1px 0 !important;
   outline: none;
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -37,6 +41,9 @@
   background: linear-gradient(to bottom, #e6e6e6 0%, #d6d6d6 100%);
   cursor: pointer;
   box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .tabs-va-content .tabs-va-content-list button:hover {
@@ -63,6 +70,9 @@
   padding: 20px 15px;
   clear: both;
   box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
 }
 
 .tabs-va-content .tabs-va-content-panel[aria-hidden='true'] {
@@ -72,6 +82,7 @@
 /* Panel content styling */
 .tabs-va-content .tabs-va-content-panel-content {
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 .tabs-va-content .tabs-va-content-panel-content h3 {
@@ -82,22 +93,34 @@
   font-weight: 400;
   margin-top: 12px;
   margin-bottom: 12px;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .tabs-va-content .tabs-va-content-panel-content p {
   margin: 0 0 15px 0;
   line-height: 1.5;
   font-size: 14px;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .tabs-va-content .tabs-va-content-panel-content img {
   max-width: 100%;
   height: auto;
+  display: block;
+}
+
+.tabs-va-content .tabs-va-content-panel-content picture {
+  max-width: 100%;
+  display: block;
 }
 
 .tabs-va-content .tabs-va-content-panel-content a {
   color: #004c97;
   text-decoration: underline;
+  word-wrap: break-word;
 }
 
 .tabs-va-content .tabs-va-content-panel-content a:hover {
@@ -180,5 +203,70 @@
     border-top: none;
     padding: 25px 20px;
     clear: both;
+  }
+}
+
+/* Mobile: Additional constraints for images and content */
+@media (max-width: 767px) {
+  .tabs-va-content {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .tabs-va-content .tabs-va-content-list {
+    max-width: 100%;
+  }
+  
+  .tabs-va-content .tabs-va-content-list button {
+    font-size: 13px;
+    padding: 8px;
+    width: 100%;
+  }
+  
+  .tabs-va-content .tabs-va-content-panel {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+  
+  .tabs-va-content .tabs-va-content-panel-content {
+    max-width: 100%;
+  }
+  
+  .tabs-va-content .tabs-va-content-panel-content img.imagespace,
+  .tabs-va-content .tabs-va-content-panel-content img.imagespace-rt {
+    float: none;
+    margin: 0 0 12px 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .tabs-va-content .tabs-va-content-panel-content h3 {
+    font-size: 1.1em;
+    line-height: 1.3;
+  }
+  
+  .tabs-va-content .tabs-va-content-panel-content p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  /* Ensure all child elements stay within bounds */
+  .tabs-va-content .tabs-va-content-panel-content > * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent button containers from overflowing */
+  .tabs-va-content .tabs-va-content-panel-content .button-container {
+    max-width: 100%;
+  }
+  
+  .tabs-va-content .tabs-va-content-panel-content .button-container a {
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+    font-size: 13px;
   }
 }
