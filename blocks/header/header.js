@@ -139,6 +139,39 @@ export default async function decorate(block) {
       brandLink.className = '';
       brandLink.closest('.button-container').className = '';
     }
+    
+    // Set data-text attribute for Veterans Crisis Line button (desktop styling)
+    const crisisLine = navBrand.querySelector('.default-content-wrapper > p:nth-child(2)');
+    if (crisisLine) {
+      // Remove the arrow link element if present
+      const arrowLink = crisisLine.querySelector('a[title=">"]');
+      if (arrowLink) {
+        arrowLink.remove();
+      }
+      // Get clean text without the arrow
+      const textContent = crisisLine.textContent.trim().replace(/>\s*$/, '').trim();
+      crisisLine.setAttribute('data-text', textContent);
+    }
+    
+    // Wrap logo and tools in a container div for better flex layout
+    const contentWrapper = navBrand.querySelector('.default-content-wrapper');
+    if (contentWrapper) {
+      const logo = contentWrapper.querySelector('p:nth-child(3)');
+      const tools = contentWrapper.querySelector('ul');
+      
+      if (logo && tools) {
+        // Create wrapper div
+        const logoToolsWrapper = document.createElement('div');
+        logoToolsWrapper.classList.add('logo-tools-wrapper');
+        
+        // Insert wrapper before logo
+        contentWrapper.insertBefore(logoToolsWrapper, logo);
+        
+        // Move logo and tools into wrapper
+        logoToolsWrapper.appendChild(logo);
+        logoToolsWrapper.appendChild(tools);
+      }
+    }
   }
 
   const navSections = nav.querySelector('.nav-sections');
