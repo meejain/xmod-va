@@ -5,6 +5,8 @@
   background: transparent;
   padding: 0;
   margin-bottom: 18px;
+  /* Reserve space to prevent CLS */
+  min-height: 88px;
 }
 
 .dropdown-va-persona {

@@ -77,6 +77,7 @@
 /* Background container */
 .homepage-template #bg-main {
   min-width: 320px;
+  min-height: 800px; /* Reserve space to prevent CLS */
   background: url("https://main--xmod-va--meejain.aem.page/assets/media_14c89ddbc9378d4c75f2913b28c121c0738b83729.png") #000B34 no-repeat scroll center top;
 }
 
@@ -125,6 +126,8 @@
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;
+  /* Reserve minimum space to prevent CLS */
+  min-height: 400px;
 }
 
 /* Sitemap header - "Veterans Health Administration" */
@@ -174,6 +177,8 @@
   padding: 0;
   background: url("https://main--xmod-va--meejain.aem.page/assets/media_1cf03723161d2d1012a5be8cc527c67c4308d6ddf.png") left top repeat-x;
   margin: 0;
+  /* Reserve space to prevent CLS */
+  min-height: 88px;
 }
 
 .homepage-template .dropdown-va-persona {
@@ -637,7 +642,7 @@ div.badge a img {
   }
 
   .homepage-template #leftNavContainer {
-    min-height: auto;
+    min-height: 400px;
     margin: 0 0 30px 0;
   }
 }
@@ -668,6 +673,7 @@ div.badge a img {
 /* Quick Links - Main container (title + first 4 images) */
 .homepage-template #left-col-content .quick-links-main {
   max-height: 100%;
+  min-height: 300px; /* Reserve space to prevent CLS */
   border: 4px solid #e0e9f0;
   margin: 10px;
   padding: 10px 0;
