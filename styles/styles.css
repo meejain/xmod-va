@@ -108,7 +108,7 @@ main {
 }
 
 header {
-  /* Remove fixed height to allow header to size naturally */
+  min-height: 0;
 }
 
 header .header,
@@ -127,11 +127,16 @@ body.homepage {
 }
 
 body.homepage > *:not(header):not(footer) {
-  visibility: hidden;
+  /* Use opacity + pointer-events instead of visibility to prevent layout shifts */
+  opacity: 0;
+  pointer-events: none;
 }
 
 body.homepage.template-loaded > * {
-  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  /* Smooth fade-in after template is loaded */
+  transition: opacity 0.1s ease-in;
 }
 
 h1,
@@ -256,6 +261,24 @@ main img {
    with width/height attributes, but we need to ensure it's not broken by CSS */
 main img[width][height] {
   height: auto;
+}
+
+/* For images without explicit dimensions, set a minimum aspect ratio to reserve space */
+main picture img:not([width]):not([height]) {
+  min-height: 100px;
+  background: var(--light-color);
+}
+
+/* Ensure VA logo and other header images have explicit dimensions */
+header img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent lazy-loaded images from causing CLS */
+img[loading="lazy"] {
+  /* Browser will reserve space based on aspect ratio if width/height are set */
+  content-visibility: auto;
 }
 
 .icon {

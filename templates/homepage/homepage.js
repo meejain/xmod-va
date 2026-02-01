@@ -288,10 +288,8 @@ export default async function decorate(doc) {
   doc.body.classList.add('homepage-template');
 
   // CRITICAL CLS FIX: Signal that template has finished restructuring
-  // This triggers CSS to show sections (they were hidden to prevent CLS)
-  requestAnimationFrame(() => {
-    doc.body.classList.add('template-loaded');
-  });
+  // Add class synchronously (not in requestAnimationFrame) to show content immediately after restructure
+  doc.body.classList.add('template-loaded');
 
   // eslint-disable-next-line no-console
   console.log('Homepage template applied successfully');
