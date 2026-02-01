@@ -98,6 +98,19 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* CRITICAL CLS FIX: Hide body content (except header/footer) for template pages until template restructures DOM */
+body.homepage {
+  visibility: visible;
+}
+
+body.homepage > *:not(header):not(footer) {
+  visibility: hidden;
+}
+
+body.homepage.template-loaded > * {
+  visibility: visible;
+}
+
 h1,
 h2,
 h3,
@@ -213,6 +226,12 @@ button.secondary {
 main img {
   max-width: 100%;
   width: auto;
+  height: auto;
+}
+
+/* Prevent CLS: Modern browsers automatically preserve aspect ratio for images 
+   with width/height attributes, but we need to ensure it's not broken by CSS */
+main img[width][height] {
   height: auto;
 }
 

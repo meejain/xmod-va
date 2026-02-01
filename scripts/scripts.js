@@ -181,8 +181,9 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   const templateName = getMetadata('template');
   
-  // Only load sections if template didn't already load them
-  if (!templateName) {
+  // Load remaining sections if not a template page
+  // Template pages already loaded sections in loadEager
+  if (!templateName && main) {
     await loadSections(main);
   }
 
