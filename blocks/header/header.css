@@ -360,6 +360,130 @@ header nav .nav-brand .logo-tools-wrapper > ul a {
   white-space: nowrap;
 }
 
+/* Search dropdown container */
+.search-dropdown {
+  position: relative;
+}
+
+/* Search dropdown button */
+.search-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  padding: 4px 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.search-dropdown-btn:hover {
+  text-decoration: underline;
+}
+
+/* Search icon */
+.search-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('/icons/search.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0) invert(1);
+}
+
+/* Search text */
+.search-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Search dropdown arrow */
+.search-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.search-dropdown-btn[aria-expanded="true"] .search-arrow {
+  transform: rotate(180deg);
+}
+
+/* Search dropdown panel */
+.search-dropdown-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  padding: 8px;
+  margin-top: 8px;
+  min-width: 280px;
+  border-radius: 0;
+}
+
+.search-dropdown-panel.active {
+  display: block;
+}
+
+/* Search input wrapper */
+.search-input-wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Search input field */
+.search-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  border: 2px solid #565c65;
+  border-right: none;
+  border-radius: 0;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #005ea2;
+  box-shadow: inset 0 0 0 1px #005ea2;
+}
+
+/* Search submit button */
+.search-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #005ea2;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-submit-btn:hover {
+  background-color: #1a4480;
+}
+
+.search-submit-btn .search-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
 header nav .nav-brand .logo-tools-wrapper > ul a:hover {
   text-decoration: underline;
   background-color: transparent;
@@ -823,6 +947,294 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
   header nav .nav-tools {
     padding: 12px 32px;
+  }
+}
+
+/* ======================= */
+/* Mega Menu Styles */
+/* ======================= */
+
+/* Nav drop button styling */
+.nav-drop-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.nav-drop-button:hover {
+  background-color: #1a4480;
+}
+
+.nav-drop-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  transition: transform 0.2s ease;
+}
+
+.nav-drop[aria-expanded="true"] .nav-drop-arrow {
+  transform: rotate(180deg);
+}
+
+/* Mega menu panel - full width dropdown */
+.mega-menu-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 800px;
+  max-width: 1000px;
+}
+
+.mega-menu-panel.active {
+  display: flex;
+}
+
+/* Simple mega menu (About VA) - columns only */
+.mega-menu-simple {
+  padding: 24px 32px;
+}
+
+.mega-menu-simple .mega-menu-columns {
+  display: flex;
+  gap: 48px;
+}
+
+/* Mega menu with sidebar (VA Benefits) */
+.mega-menu-sidebar {
+  background-color: #f0f0f0;
+  min-width: 220px;
+  padding: 16px 0;
+  border-right: 1px solid #dfe1e2;
+}
+
+.mega-menu-category {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  color: #1b1b1b;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+
+.mega-menu-category:hover {
+  background-color: #e1e1e1;
+}
+
+.mega-menu-category.active {
+  background-color: #fff;
+  border-left-color: #005ea2;
+  font-weight: 700;
+}
+
+/* Mega menu content area */
+.mega-menu-content {
+  flex: 1;
+  padding: 24px 32px;
+  position: relative;
+  min-width: 600px;
+}
+
+.mega-menu-category-content {
+  display: none;
+}
+
+.mega-menu-category-content.active {
+  display: block;
+}
+
+/* Row wrapper for columns and featured card */
+.mega-menu-content-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* View all link */
+.mega-menu-view-all {
+  display: inline-flex;
+  align-items: center;
+  color: #005ea2;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 24px;
+  gap: 4px;
+}
+
+.mega-menu-view-all:hover {
+  text-decoration: underline;
+  color: #1a4480;
+}
+
+.mega-menu-view-all .arrow {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* Columns layout - use flex row with featured on right */
+.mega-menu-columns {
+  display: flex;
+  gap: 32px;
+  flex: 1;
+}
+
+.mega-menu-column {
+  min-width: 160px;
+  flex: 1;
+}
+
+.mega-menu-column h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #323a45;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
+.mega-menu-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-menu-column ul li {
+  margin-bottom: 12px;
+}
+
+.mega-menu-column ul li a {
+  color: #005ea2;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
+.mega-menu-column ul li a:hover {
+  text-decoration: underline;
+  color: #1a4480;
+}
+
+/* Featured card - positioned alongside columns */
+.mega-menu-featured {
+  width: 200px;
+  min-width: 200px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 0;
+  margin-left: auto;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mega-menu-featured img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  display: block;
+}
+
+.mega-menu-featured-title {
+  display: block;
+  color: #005ea2;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.mega-menu-featured-title:hover {
+  text-decoration: underline;
+  color: #1a4480;
+}
+
+.mega-menu-featured-desc {
+  font-size: 14px;
+  color: #323a45;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Position mega menu relative to nav container */
+header nav .nav-sections > .default-content-wrapper > ul > li.nav-drop {
+  position: static;
+}
+
+header nav .nav-sections > .default-content-wrapper {
+  position: relative;
+}
+
+/* Hide original submenus when mega menu is active */
+header nav .nav-sections .nav-drop > ul {
+  display: none !important;
+}
+
+/* Responsive mega menu */
+@media (max-width: 1100px) {
+  .mega-menu-panel {
+    min-width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .mega-menu-featured {
+    position: static;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .mega-menu-columns {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .mega-menu-panel {
+    flex-direction: column;
+  }
+
+  .mega-menu-sidebar {
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #dfe1e2;
+  }
+
+  .mega-menu-content {
+    padding: 16px;
+  }
+
+  .mega-menu-columns {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .mega-menu-column {
+    max-width: 100%;
   }
 }
 
