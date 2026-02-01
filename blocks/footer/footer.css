@@ -1,4 +1,6 @@
 /* VA.gov Footer Styling */
+
+/* Main Footer Container */
 footer {
   background-color: #162e51;
   color: #fff;
@@ -6,60 +8,203 @@ footer {
   font-size: 16px;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1024px;
-  padding: 40px 20px 20px;
+footer .footer {
+  padding: 0;
 }
 
-footer .footer > div > div:first-child {
+footer .footer-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* PACT Act Banner - Bottom banner (gray background, blue link) */
+footer .pact-act-banner {
+  background-color: #f1f1f1;
+  padding: 12px 20px;
+  text-align: center;
+  border-top: 1px solid #d6d7d9;
+}
+
+footer .pact-act-banner p {
+  max-width: 1024px;
+  margin: 0 auto;
+  color: #1b1b1b;
+  font-size: 14px;
+  text-align: center;
+}
+
+footer .pact-act-banner p a {
+  color: #005ea2 !important;
+  text-decoration: underline !important;
+  font-weight: 400 !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: inline !important;
+  border-radius: 0 !important;
+}
+
+footer .pact-act-banner p a:hover {
+  color: #1a4480 !important;
+  background: none !important;
+  background-color: transparent !important;
+}
+
+footer .pact-act-banner .pact-arrow {
+  color: #005ea2;
+  font-weight: 400;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+/* Last Updated Row */
+footer .footer-last-updated {
+  background-color: #f1f1f1;
+  padding: 12px 20px;
+  border-bottom: 1px solid #d6d7d9;
+  text-align: center;
+}
+
+footer .footer-last-updated p {
+  max-width: 1024px;
+  margin: 0 auto;
+  color: #323a45;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Main Footer Section */
+footer .footer-main {
+  background-color: #162e51;
+  padding: 40px 20px 32px;
+}
+
+/* Footer Columns - 4 column grid */
+footer .footer-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 32px;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
-/* Link columns grid */
-footer .footer > div {
-  display: block;
+footer .footer-column {
+  min-width: 0;
 }
 
-footer .footer > div > div:first-child,
-footer .footer > div > div:nth-child(2),
-footer .footer > div > div:nth-child(3),
-footer .footer > div > div:nth-child(4) {
-  display: inline-block;
-  vertical-align: top;
-  width: calc(25% - 18px);
-  margin-right: 24px;
+footer .footer-column h2 {
+  font-family: Bitter, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #fff;
+  line-height: 1.3;
 }
 
-footer .footer > div > div:nth-child(4) {
-  margin-right: 0;
+footer .footer-column h2:not(:first-child) {
+  margin-top: 24px;
 }
 
-/* Language links section */
-footer .footer > div > div:nth-child(5) {
-  display: block;
-  width: 100%;
+footer .footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer-column ul li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+footer .footer-column a {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 15px;
+}
+
+footer .footer-column a:hover {
+  color: #73b3e7;
+}
+
+/* Language Assistance Section */
+footer .footer-language {
+  background-color: #162e51;
+  padding: 0 20px 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  padding-top: 24px;
-  margin-top: 32px;
-}
-
-/* Logo section */
-footer .footer > div > div:nth-child(6) {
-  display: block;
-  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding-top: 24px;
 }
 
-/* Legal links section */
-footer .footer > div > div:nth-child(7) {
-  display: block;
-  width: 100%;
-  padding-bottom: 24px;
+footer .footer-language .language-label {
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
+footer .footer-language .language-links a {
+  margin-right: 16px;
+}
+
+footer .footer-language .language-content {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+footer .footer-language p {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+}
+
+footer .footer-language a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+footer .footer-language a:hover {
+  color: #73b3e7;
+}
+
+/* Logo Section - Dark blue background */
+footer .footer-logo {
+  background-color: #162e51;
+  padding: 24px 20px 16px;
+}
+
+footer .footer-logo p {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+footer .footer-logo img {
+  width: 200px;
+  height: auto;
+}
+
+/* Legal Links Section - Dark blue background */
+footer .footer-legal {
+  background-color: #162e51;
+  padding: 0 20px 24px;
+}
+
+footer .footer-legal p {
+  max-width: 1024px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.8;
+}
+
+footer .footer-legal a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+footer .footer-legal a:hover {
+  color: #73b3e7;
+}
+
+/* Legacy footer styles - general fallbacks */
 footer h2 {
   font-family: Bitter, Georgia, Cambria, 'Times New Roman', Times, serif;
   font-size: 17px;
@@ -76,7 +221,7 @@ footer ul {
 }
 
 footer ul li {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   line-height: 1.5;
 }
 
@@ -99,46 +244,38 @@ footer img {
   height: auto;
 }
 
-/* Language and legal links */
-footer .footer > div > div:nth-child(5) p {
-  color: #fff;
-}
-
-footer .footer > div > div:nth-child(5) p a {
-  margin-right: 8px;
-}
-
-footer .footer > div > div:nth-child(7) p {
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.8;
-}
-
-footer .footer > div > div:nth-child(7) p a {
-  margin-right: 4px;
-}
-
+/* Responsive Design */
 @media (width < 900px) {
-  footer .footer > div > div:first-child,
-  footer .footer > div > div:nth-child(2),
-  footer .footer > div > div:nth-child(3),
-  footer .footer > div > div:nth-child(4) {
-    width: calc(50% - 12px);
-    margin-bottom: 24px;
-  }
-
-  footer .footer > div > div:nth-child(2),
-  footer .footer > div > div:nth-child(4) {
-    margin-right: 0;
+  footer .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
 @media (width < 600px) {
-  footer .footer > div > div:first-child,
-  footer .footer > div > div:nth-child(2),
-  footer .footer > div > div:nth-child(3),
-  footer .footer > div > div:nth-child(4) {
-    width: 100%;
-    margin-right: 0;
+  footer .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  footer .footer-main {
+    padding: 32px 20px 24px;
+  }
+
+  footer .pact-act-banner {
+    padding: 16px 20px;
+  }
+
+  footer .pact-act-banner p {
+    font-size: 15px;
+  }
+
+  footer .footer-logo img {
+    width: 180px;
+  }
+
+  footer .footer-legal p {
+    font-size: 13px;
+    line-height: 2;
   }
 }
