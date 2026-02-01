@@ -57,6 +57,7 @@ header nav .nav-brand .logo-tools-wrapper {
     margin: 0 auto;
     width: 100%;
     max-width: 959px;
+    border-bottom: 1px solid rgb(255, 255, 255);
   }
 }
 
@@ -413,7 +414,6 @@ header nav .nav-brand img {
 /* Production: dark blue background extends full width, menu items centered */
 header nav .nav-sections {
   background-color: #162e51;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
   display: block;
   visibility: visible;
   width: 100%;
@@ -421,24 +421,16 @@ header nav .nav-sections {
 }
 
 header nav .nav-sections > .default-content-wrapper {
-  padding: 0 24px;
+  padding: 0;
+  max-width: 100%;
 }
 
-/* On larger screens, center content within 1560px area */
-@media screen and (min-width: 1008px) {
+/* On larger screens, center content and limit width */
+@media screen and (min-width: 960px) {
   header nav .nav-sections > .default-content-wrapper {
-    max-width: 959px;
-    margin: auto;
-  }
-}
-
-/* On smaller desktop screens, use regular padding */
-@media screen and (min-width: 1008px) and (max-width: 1584px) {
-  header nav .nav-sections > .default-content-wrapper {
-    padding-left: 24px;
-    padding-right: 24px;
-    max-width: 959px;
-    margin: auto;
+    max-width: var(--header-content-width);
+    margin: 0 auto;
+    padding: 0;
   }
 }
 
@@ -457,10 +449,25 @@ header nav .nav-sections > .default-content-wrapper > ul {
   flex-wrap: wrap;
 }
 
-@media screen and (min-width: 768px) {
+/* Desktop: Keep all items on single line, left-aligned */
+@media screen and (min-width: 960px) {
+  header nav .nav-sections > .default-content-wrapper > ul {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+    max-width: 959px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
   header nav .nav-sections > .default-content-wrapper > ul {
     margin-top: 10px;
     margin-bottom: 0;
+    padding: 0 24px;
   }
 }
 
@@ -473,6 +480,13 @@ header nav .nav-sections > .default-content-wrapper > ul > li {
 @media screen and (min-width: 768px) {
   header nav .nav-sections > .default-content-wrapper > ul > li {
     margin-bottom: 0;
+  }
+}
+
+/* Desktop: Add gap between 2nd and 3rd items to create visual separation */
+@media screen and (min-width: 960px) {
+  header nav .nav-sections > .default-content-wrapper > ul > li:nth-child(4) {
+    margin-left: 210px;
   }
 }
 
@@ -510,6 +524,16 @@ header nav .nav-sections > .default-content-wrapper > ul > li > .button-containe
   header nav .nav-sections > .default-content-wrapper > ul > li > p,
   header nav .nav-sections > .default-content-wrapper > ul > li > .button-container a {
     background-color: transparent;
+  }
+}
+
+/* Desktop: Smaller font and tighter spacing to fit all on one line */
+@media screen and (min-width: 960px) {
+  header nav .nav-sections > .default-content-wrapper > ul > li > p,
+  header nav .nav-sections > .default-content-wrapper > ul > li > .button-container a {
+    font-size: 16px;
+    padding: 7px;
+    font-weight: 700;
   }
 }
 
@@ -795,10 +819,6 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     padding: 16px 32px;
     max-width: 959px;
     margin: auto;
-  }
-
-  header nav .nav-sections {
-    padding: 0 32px;
   }
 
   header nav .nav-tools {
