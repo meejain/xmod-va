@@ -84,19 +84,9 @@
   }
 }
 
-/* Mobile responsive */
-@media (max-width: 767px) {
-  .dropdown-va-persona {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .dropdown-va-persona-select-wrapper {
-    width: calc(100% - 10px);
-    margin-right: 10px;
-  }
-  
-  .dropdown-va-persona-select {
-    width: 114%;
+/* Mobile responsive - Hide on mobile */
+@media (max-width: 959px) {
+  .dropdown-va-persona-wrapper {
+    display: none;
   }
 }

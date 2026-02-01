@@ -189,14 +189,20 @@
   background: transparent;
 }
 
-/* Mobile: Hide accordion and sitemap by default (matching VA.gov behavior) */
+/* Mobile: Show accordion, hide sitemap and left column content (matching VA.gov behavior) */
 @media (max-width: 959px) {
   .homepage-template #leftNavContainer .sitemap {
     display: none;
   }
 
+  /* Show accordion on mobile - it should be visible */
   .homepage-template #leftNavContainer .accordion-va-menu-wrapper {
-    display: none;
+    display: block;
+  }
+
+  /* Hide left column content (Quick Links, widgets, etc.) on mobile */
+  .homepage-template #left-col-content {
+    display: none !important;
   }
 }
 
