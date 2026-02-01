@@ -70,6 +70,94 @@ function toggleAllNavSections(sections, expanded = false) {
 }
 
 /**
+ * Convert nav-sections items to accordion structure on mobile
+ * @param {Element} navSections The nav sections container
+ */
+function convertToMobileAccordion(navSections) {
+  const mainNavItems = navSections.querySelectorAll(':scope .default-content-wrapper > ul > li');
+  
+  mainNavItems.forEach((navItem) => {
+    // Skip if already converted
+    if (navItem.classList.contains('mobile-accordion-converted')) return;
+    
+    const hasSubMenu = navItem.querySelector(':scope > ul');
+    const hasButton = navItem.querySelector(':scope > button.nav-drop-button');
+    const hasParagraph = navItem.querySelector(':scope > p');
+    
+    // Get the label text and link href for items without submenu
+    let labelText = '';
+    let linkHref = '';
+    
+    if (hasButton) {
+      labelText = hasButton.textContent.replace('›', '').trim();
+    } else if (hasParagraph) {
+      const link = hasParagraph.querySelector('a');
+      if (link) {
+        labelText = link.textContent.trim();
+        linkHref = link.href;
+      } else {
+        labelText = hasParagraph.textContent.trim();
+      }
+    }
+    
+    if (hasSubMenu && labelText) {
+      // Create expandable accordion structure for items with submenu
+      const details = document.createElement('details');
+      details.className = 'accordion-va-menu-item nav-accordion-item mobile-only';
+      
+      const summary = document.createElement('summary');
+      summary.className = 'accordion-va-menu-item-label';
+      summary.textContent = labelText;
+      
+      const body = document.createElement('div');
+      body.className = 'accordion-va-menu-item-body';
+      
+      // Clone the submenu to the body
+      const submenu = navItem.querySelector(':scope > ul');
+      if (submenu) {
+        const clonedSubmenu = submenu.cloneNode(true);
+        // Remove inline display:none style that was added by mega menu
+        clonedSubmenu.removeAttribute('style');
+        body.appendChild(clonedSubmenu);
+      }
+      
+      details.appendChild(summary);
+      details.appendChild(body);
+      
+      // Append accordion without removing original content
+      navItem.appendChild(details);
+      navItem.classList.add('mobile-accordion-converted');
+    } else if (!hasSubMenu && labelText && linkHref) {
+      // For items without submenu, create a link styled like an accordion item
+      const link = document.createElement('a');
+      link.className = 'nav-accordion-link mobile-only';
+      link.href = linkHref;
+      link.textContent = labelText;
+      
+      // Append link without removing original content
+      navItem.appendChild(link);
+      navItem.classList.add('mobile-accordion-converted', 'no-submenu');
+    }
+  });
+}
+
+/**
+ * Revert accordion structure back to original nav structure for desktop
+ * @param {Element} navSections The nav sections container
+ */
+function revertFromMobileAccordion(navSections) {
+  const convertedItems = navSections.querySelectorAll('.mobile-accordion-converted');
+  convertedItems.forEach((navItem) => {
+    // Remove mobile-only elements
+    const mobileElements = navItem.querySelectorAll('.mobile-only');
+    mobileElements.forEach((el) => el.remove());
+    
+    // Remove conversion classes
+    navItem.classList.remove('mobile-accordion-converted', 'no-submenu');
+  });
+}
+
+/**
  * Toggles the entire nav
  * @param {Element} nav The container element
  * @param {Element} navSections The nav sections within the container element
@@ -625,7 +713,20 @@ export default async function decorate(block) {
   
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  
+  // Convert to accordion structure on mobile
+  if (!isDesktop.matches) {
+    convertToMobileAccordion(navSections);
+  }
+  
+  isDesktop.addEventListener('change', () => {
+    if (!isDesktop.matches) {
+      convertToMobileAccordion(navSections);
+    } else {
+      revertFromMobileAccordion(navSections);
+    }
+    toggleMenu(nav, navSections, isDesktop.matches);
+  });
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
