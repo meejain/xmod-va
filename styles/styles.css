@@ -216,6 +216,12 @@ main img {
   height: auto;
 }
 
+/* Prevent CLS: Modern browsers automatically preserve aspect ratio for images 
+   with width/height attributes, but we need to ensure it's not broken by CSS */
+main img[width][height] {
+  height: auto;
+}
+
 .icon {
   display: inline-block;
   height: 24px;
