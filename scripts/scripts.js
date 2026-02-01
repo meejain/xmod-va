@@ -149,12 +149,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    
-    // For template pages: defer visibility until AFTER template restructuring
-    // This prevents CLS from dynamic DOM manipulation
-    if (!templateName) {
-      document.body.classList.add('appear');
-    }
+    document.body.classList.add('appear');
     
     // Load first section with LCP image
     await loadSection(main.querySelector('.section'), waitForFirstImage);
@@ -163,8 +158,6 @@ async function loadEager(doc) {
     if (templateName) {
       await loadSections(main);
       await loadTemplate(doc, templateName);
-      // Make content visible AFTER template has restructured the DOM
-      document.body.classList.add('appear');
     }
   }
 
@@ -188,8 +181,9 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   const templateName = getMetadata('template');
   
-  // Only load sections if template didn't already load them
-  if (!templateName) {
+  // Load remaining sections if not a template page
+  // Template pages already loaded sections in loadEager
+  if (!templateName && main) {
     await loadSections(main);
   }
 
