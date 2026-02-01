@@ -437,9 +437,12 @@ export default async function decorate(block) {
           searchPanel.classList.add('search-dropdown-panel');
           searchPanel.innerHTML = `
             <div class="search-input-wrapper">
-              <input type="text" class="search-input" placeholder="Search VA.gov" aria-label="Search VA.gov">
+              <input type="text" class="search-input" placeholder="" aria-label="Search" aria-autocomplete="none" autocomplete="off">
               <button type="submit" class="search-submit-btn" aria-label="Search">
-                <span class="search-icon"></span>
+                <svg aria-hidden="true" focusable="false" width="18" viewBox="3 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#fff" fill-rule="evenodd" clip-rule="evenodd" d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"></path>
+                </svg>
+                <span class="usa-sr-only">Search</span>
               </button>
             </div>
           `;
@@ -450,6 +453,13 @@ export default async function decorate(block) {
             const expanded = searchBtn.getAttribute('aria-expanded') === 'true';
             searchBtn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
             searchPanel.classList.toggle('active', !expanded);
+            
+            // Focus input when opening
+            if (!expanded) {
+              setTimeout(() => {
+                searchPanel.querySelector('.search-input').focus();
+              }, 100);
+            }
           });
 
           // Handle search submission
@@ -467,6 +477,15 @@ export default async function decorate(block) {
           searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
               performSearch();
+            }
+          });
+          
+          // Close dropdown on Escape key
+          searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              searchBtn.setAttribute('aria-expanded', 'false');
+              searchPanel.classList.remove('active');
+              searchBtn.focus();
             }
           });
 
@@ -586,6 +605,15 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+  
+  // Add crisis line modal handler
+  const crisisLineBtn = nav.querySelector('.nav-brand > .default-content-wrapper > p:nth-child(2)');
+  if (crisisLineBtn) {
+    crisisLineBtn.addEventListener('click', () => {
+      openCrisisLineModal();
+    });
+  }
+  
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
@@ -595,3 +623,91 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 }
+
+/**
+ * Create and open the Veterans Crisis Line modal
+ */
+function openCrisisLineModal() {
+  // Create modal if it doesn't exist
+  let modal = document.getElementById('vcl-modal-crisisline');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'vcl-modal-crisisline';
+    modal.className = 'vcl-overlay va-modal va-modal-large';
+    modal.setAttribute('role', 'alertdialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'vcl-modal-title');
+    
+    modal.innerHTML = `
+      <div class="vcl-crisis-panel va-modal-inner">
+        <button aria-label="Close this modal" id="vcl-modal-close" type="button" class="vcl-modal-close">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fff" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </button>
+        <div class="vcl-overlay-body vcl-crisis-panel-body">
+          <h3 id="vcl-modal-title" class="vcl-crisis-panel-title">We're here anytime, day or night – 24/7</h3>
+          <p>If you are a Veteran in crisis or concerned about one, connect with our caring, qualified responders for confidential help. Many of them are Veterans themselves.</p>
+          <ul class="vcl-crisis-panel-list">
+            <li>
+              <svg aria-hidden="true" class="vcl-crisis-panel-icon" focusable="false" viewBox="0 0 23 23" width="30" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(270deg);">
+                <path fill="#000" fill-rule="evenodd" clip-rule="evenodd" d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"></path>
+              </svg>
+              <a href="tel:988">Call <strong>988 and select 1</strong></a>
+            </li>
+            <li>
+              <svg aria-hidden="true" class="vcl-crisis-panel-icon" focusable="false" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#000" d="M15.5 1h-8A2.5 2.5 0 0 0 5 3.5v17A2.5 2.5 0 0 0 7.5 23h8a2.5 2.5 0 0 0 2.5-2.5v-17A2.5 2.5 0 0 0 15.5 1Zm-4 21a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5-4H7V4h9v14Z"></path>
+              </svg>
+              <a href="sms:838255">Text <strong>838255</strong></a>
+            </li>
+            <li>
+              <svg aria-hidden="true" class="vcl-crisis-panel-icon" focusable="false" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#000" fill-rule="evenodd" clip-rule="evenodd" d="M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12Z"></path>
+              </svg>
+              <a class="no-external-icon" href="https://www.veteranscrisisline.net/get-help-now/chat/">Start a confidential chat</a>
+            </li>
+            <li>
+              <svg aria-hidden="true" class="vcl-crisis-panel-icon" focusable="false" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#1B1B1B" fill-rule="evenodd" d="m20.51 22-6.79-6.79c-.34.28-.62.52-.86.75-.24.22-.44.45-.6.7a6.72 6.72 0 0 0-.48.8 11.8 11.8 0 0 0-.44 1.03c-.31.81-.8 1.45-1.45 1.9a3.84 3.84 0 0 1-2.25.7 3.3 3.3 0 0 1-2.36-.95 3.52 3.52 0 0 1-1.1-2.34h1.38a2.19 2.19 0 0 0 .7 1.37 2 2 0 0 0 1.38.54c.55 0 1.04-.18 1.46-.52a3.9 3.9 0 0 0 1.07-1.55 11.2 11.2 0 0 1 1.1-2c.21-.27.44-.53.67-.76a8.24 8.24 0 0 1 .77-.68L5.83 7.32a6.64 6.64 0 0 0-.2.72 5.16 5.16 0 0 0-.1.77H4.16a8.29 8.29 0 0 1 .2-1.33c.1-.43.23-.83.41-1.21L2 3.49l.99-.99 18.5 18.51-.98.99Zm-2.32-6.26-.98-.99a8.6 8.6 0 0 0 1.56-2.7A9.05 9.05 0 0 0 19.29 9c0-1.17-.2-2.28-.6-3.33a7.82 7.82 0 0 0-1.78-2.74L17.94 2a9.5 9.5 0 0 1 2.02 3.17 10.4 10.4 0 0 1 .08 7.4 10.5 10.5 0 0 1-1.85 3.17Zm-2.52-2.52-1.05-1.06a5.57 5.57 0 0 0 .78-3.07c0-1.38-.47-2.54-1.4-3.48a4.68 4.68 0 0 0-3.47-1.4c-.56 0-1.1.07-1.6.22a5.16 5.16 0 0 0-1.38.67l-.99-.99a6.34 6.34 0 0 1 1.84-.95 6.77 6.77 0 0 1 2.13-.33c1.84 0 3.34.58 4.5 1.75a6.12 6.12 0 0 1 1.74 4.5 9.3 9.3 0 0 1-.26 2.29 6.03 6.03 0 0 1-.84 1.85ZM12.46 10 9.59 7.14a2.24 2.24 0 0 1 .46-.17 2.02 2.02 0 0 1 2 .58 2.2 2.2 0 0 1 .41 2.45Zm-1.97 1.21c-.6 0-1.1-.2-1.52-.62a2.06 2.06 0 0 1-.62-1.51 2.27 2.27 0 0 1 .23-.99l2.9 2.9a2.27 2.27 0 0 1-1 .22Z" clip-rule="evenodd"></path>
+              </svg>
+              <p><a href="tel:711">For TTY, call <strong>711 then 988</strong></a></p>
+            </li>
+          </ul>
+          <p class="vcl-modal-footer">Get more resources at <a href="https://www.veteranscrisisline.net/">VeteransCrisisLine.net</a>.</p>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add close button handler
+    const closeBtn = modal.querySelector('#vcl-modal-close');
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('vcl-overlay--open');
+    });
+    
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('vcl-overlay--open');
+      }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('vcl-overlay--open')) {
+        modal.classList.remove('vcl-overlay--open');
+      }
+    });
+  }
+  
+  // Open modal
+  modal.classList.add('vcl-overlay--open');
+  
+  // Focus the close button for accessibility
+  setTimeout(() => {
+    modal.querySelector('#vcl-modal-close').focus();
+  }, 100);
+}
+
