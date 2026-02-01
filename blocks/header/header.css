@@ -763,6 +763,16 @@ header nav .nav-sections > .default-content-wrapper > ul > li > ul > li > a:hove
 
 /* Mobile: Style converted nav items as accordions */
 @media (max-width: 959px) {
+  /* Hide Search, Contact us, and Sign in on mobile */
+  header nav .nav-tools {
+    display: none !important;
+  }
+  
+  /* Hide logo-tools-wrapper > ul on mobile */
+  header nav .nav-brand .logo-tools-wrapper > ul {
+    display: none !important;
+  }
+  
   /* Prevent horizontal overflow on mobile */
   header {
     overflow-x: hidden;
