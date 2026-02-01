@@ -229,8 +229,7 @@ export default async function decorate(doc) {
   const rightFill = document.createElement('div');
   rightFill.className = 'fill';
 
-  // MOBILE CLS FIX: On mobile, we'll reorder content to show carousel first
-  // This is handled by CSS flexbox order property
+  // Move main content into right column
   rightFill.appendChild(main);
   
   // Add swoosh div above carousel-va-news

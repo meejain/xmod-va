@@ -107,7 +107,7 @@
   position: relative;
 }
 
-/* Mobile: Use flexbox to reorder content - carousel appears before accordion */
+/* Mobile ONLY: Use flexbox to reorder - carousel first, accordion second */
 @media (max-width: 959px) {
   .homepage-template .row {
     overflow-x: hidden;
@@ -115,12 +115,12 @@
     flex-direction: column;
   }
   
-  /* Carousel/main content appears first on mobile */
+  /* Carousel/main content appears FIRST on mobile */
   .homepage-template .col-md-9 {
     order: 1;
   }
   
-  /* Left navigation (accordion) appears after carousel on mobile */
+  /* Left navigation (accordion) appears SECOND on mobile */
   .homepage-template .col-md-3 {
     order: 2;
   }
@@ -129,7 +129,6 @@
 /* Column base styles */
 .homepage-template .col-md-3,
 .homepage-template .col-md-9 {
-  float: left;
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
@@ -137,12 +136,25 @@
   max-width: 100%;
 }
 
-/* Mobile: Ensure columns don't cause horizontal shifts */
+/* Mobile: Full width columns, no float, flexbox handles order */
 @media (max-width: 959px) {
   .homepage-template .col-md-3,
   .homepage-template .col-md-9 {
-    float: none;
+    width: 100%;
     overflow-x: hidden;
+  }
+}
+
+/* Desktop: Float-based two-column layout */
+@media (min-width: 960px) {
+  .homepage-template .col-md-3 {
+    width: 23%;
+    float: left;
+  }
+  
+  .homepage-template .col-md-9 {
+    width: 77%;
+    float: left;
   }
 }
 
@@ -160,16 +172,13 @@
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;
-  /* Reserve minimum space to prevent CLS */
-  min-height: 400px;
+  /* Reserve minimum space to prevent CLS - mobile needs less */
+  min-height: 200px;
 }
 
-/* Mobile: Reduce min-height since navigation now appears after carousel */
-@media (max-width: 959px) {
+@media (min-width: 768px) {
   .homepage-template #leftNavContainer {
-    min-height: 0;
-    /* Add top margin for spacing after carousel */
-    margin-top: 20px;
+    min-height: 400px;
   }
 }
 
@@ -220,8 +229,15 @@
   padding: 0;
   background: url("https://main--xmod-va--meejain.aem.page/assets/media_1cf03723161d2d1012a5be8cc527c67c4308d6ddf.png") left top repeat-x;
   margin: 0;
-  /* Reserve space to prevent CLS */
+  /* Reserve space to prevent CLS on desktop */
   min-height: 88px;
+}
+
+/* Mobile: Hide dropdown since carousel comes first */
+@media (max-width: 959px) {
+  .homepage-template .dropdown-va-persona-wrapper {
+    display: none;
+  }
 }
 
 .homepage-template .dropdown-va-persona {
@@ -241,7 +257,7 @@
   /* Show accordion on mobile - it should be visible */
   .homepage-template #leftNavContainer .accordion-va-menu-wrapper {
     display: block;
-    /* Reduced min-height since it's now below carousel */
+    /* Reduced min-height since accordion appears after carousel */
     min-height: 50px;
   }
 
@@ -267,12 +283,6 @@
     overflow-x: hidden;
     max-width: 100vw;
   }
-  
-  /* Hide dropdown on mobile since carousel comes first now */
-  .homepage-template .dropdown-va-persona-wrapper {
-    display: none;
-  }
-}
   
   /* Constrain sections on mobile */
   .homepage-template .section {
@@ -811,6 +821,7 @@ div.badge a img {
 
   .homepage-template .row {
     background: url("https://main--xmod-va--meejain.aem.live/assets/media_1ddbde175b5348e13d62a2e47af23d0a3fb5f5c61.png") repeat-y 0 0 #FFFFFF;
+    display: block !important;
   }
 
   .homepage-template .col-md-3 {
@@ -818,6 +829,8 @@ div.badge a img {
     overflow: hidden;
     box-sizing: border-box;
     background: transparent;
+    float: left !important;
+    order: initial;
   }
 
   .homepage-template .col-md-9 {
@@ -825,6 +838,8 @@ div.badge a img {
     background: #fff;
     overflow: hidden;
     box-sizing: border-box;
+    float: left !important;
+    order: initial;
   }
 
   .homepage-template #leftNavContainer {
@@ -833,7 +848,7 @@ div.badge a img {
   }
 }
 
-/* Desktop (960px+) */
+/* Desktop (960px+) - ensure traditional layout */
 @media (min-width: 960px) {
   .homepage-template .container {
     width: 959px;
@@ -842,6 +857,13 @@ div.badge a img {
 
   .homepage-template .row {
     background: url("https://main--xmod-va--meejain.aem.live/assets/media_1ddbde175b5348e13d62a2e47af23d0a3fb5f5c61.png") repeat-y 0 0 #FFFFFF;
+    display: block !important;
+  }
+  
+  .homepage-template .col-md-3,
+  .homepage-template .col-md-9 {
+    float: left !important;
+    order: initial;
   }
 }
 
