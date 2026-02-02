@@ -133,17 +133,26 @@ body.homepage {
   visibility: visible;
 }
 
-body.homepage > *:not(header):not(footer) {
-  /* Use visibility hidden to completely remove from layout until template is loaded */
-  visibility: hidden;
-  position: absolute;
+body.homepage > *:not(header):not(footer):not(.vcl-overlay) {
+  /* Use opacity + pointer-events instead of visibility to prevent layout shifts */
+  /* Exclude modals (.vcl-overlay) from hiding */
+  opacity: 0;
   pointer-events: none;
 }
 
-body.homepage.template-loaded > * {
-  visibility: visible;
-  position: static;
+body.homepage.template-loaded > *:not(.vcl-overlay) {
+  opacity: 1;
   pointer-events: auto;
+  /* Smooth fade-in after template is loaded */
+  transition: opacity 0.1s ease-in;
+}
+
+/* Ensure modals are always fully visible with proper stacking */
+body > .vcl-overlay {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  z-index: 99999 !important;
 }
 
 h1,

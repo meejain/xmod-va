@@ -1742,20 +1742,23 @@ header nav .nav-sections .nav-drop > ul {
 /* Modal overlay */
 .vcl-overlay {
   display: none;
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10000;
+  z-index: 99999;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  /* Ensure modal is not affected by parent transforms */
+  transform: none;
+  will-change: auto;
 }
 
 .vcl-overlay--open {
-  display: flex;
+  display: flex !important;
 }
 
 /* Modal panel */
@@ -1768,6 +1771,9 @@ header nav .nav-sections .nav-drop > ul {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-height: 90vh;
   overflow-y: auto;
+  /* Ensure panel is centered within modal */
+  margin: auto;
+  z-index: 1;
 }
 
 /* Close button */
