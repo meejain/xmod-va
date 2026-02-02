@@ -1,4 +1,4 @@
-const AUTOPLAY_INTERVAL = 3000; // 3 seconds between slides
+const AUTOPLAY_INTERVAL = 5000; // 5 seconds between slides
 
 // Default labels (no placeholders dependency)
 const labels = {
