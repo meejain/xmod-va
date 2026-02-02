@@ -354,6 +354,8 @@ header nav .nav-brand .logo-tools-wrapper > ul {
   margin: 0;
   padding: 16px 12px;
   width: 100%;
+  /* Reserve space to prevent CLS */
+  min-height: 120px;
 }
 
 /* Desktop: Horizontal list on right side of logo within wrapper */
@@ -365,6 +367,7 @@ header nav .nav-brand .logo-tools-wrapper > ul {
     justify-content: flex-end;
     gap: 24px;
     padding: 16px 12px;
+    min-height: 0;
   }
 }
 
@@ -563,15 +566,23 @@ header nav .nav-brand .logo-tools-wrapper > ul li:last-child a:hover {
 
 /* VA Logo image */
 header nav .nav-brand img {
-  height: auto;
-  width: 100%;
+  /* Explicit dimensions to prevent CLS */
+  height: 32px;
+  width: auto;
   max-width: 264px;
   display: block;
 }
 
 @media screen and (min-width: 768px) {
   header nav .nav-brand img {
+    height: 40px;
     max-width: 264px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  header nav .nav-brand img {
+    height: 45px;
   }
 }
 
@@ -944,11 +955,6 @@ header nav .nav-sections > .default-content-wrapper > ul > li > ul > li > a:hove
     border-bottom: 1px solid #D0D0CE;
   }
   
-  /* Remove border from items that have nested ul (they use nested borders instead) */
-  header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li > ul {
-    /* Nested items handle their own borders */
-  }
-  
   /* Remove border from last item */
   header nav .nav-sections .nav-accordion-item .accordion-va-menu-item-body > ul > li:last-child {
     border-bottom: none;
@@ -1025,7 +1031,6 @@ header nav .nav-sections > .default-content-wrapper > ul > li > ul > li > a:hove
   header nav .nav-sections .mobile-only {
     display: block;
   }
-}
   
   /* Style items without submenu as accordion-like links */
   header nav .nav-sections .mobile-accordion-converted.no-submenu {
@@ -1068,13 +1073,8 @@ header nav .nav-sections > .default-content-wrapper > ul > li > ul > li > a:hove
   }
 }
 
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
-function toggleMenu(nav, navSections, forceExpanded = null) {
+/* Tools section */
+header nav .nav-tools {
   background-color: #162e51;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
