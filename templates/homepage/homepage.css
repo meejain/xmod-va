@@ -80,6 +80,20 @@
   /* Reserve adequate space based on typical content height to prevent CLS */
   min-height: 1200px;
   background: url("https://main--xmod-va--meejain.aem.page/assets/media_14c89ddbc9378d4c75f2913b28c121c0738b83729.png") #000B34 no-repeat scroll center top;
+  /* Prevent layout shifts during load */
+  contain: layout;
+}
+
+@media (min-width: 768px) {
+  .homepage-template #bg-main {
+    min-height: 1800px;
+  }
+}
+
+@media (min-width: 960px) {
+  .homepage-template #bg-main {
+    min-height: 2200px;
+  }
 }
 
 /* Middle effect background */
@@ -174,11 +188,19 @@
   box-sizing: border-box;
   /* Reserve minimum space to prevent CLS - mobile needs less */
   min-height: 200px;
+  /* Prevent layout shifts */
+  contain: layout;
 }
 
 @media (min-width: 768px) {
   .homepage-template #leftNavContainer {
-    min-height: 400px;
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 960px) {
+  .homepage-template #leftNavContainer {
+    min-height: 600px;
   }
 }
 
@@ -768,11 +790,19 @@ div.badge a img {
   top: -35px;
   /* Reserve minimum height to prevent collapse during load */
   min-height: 600px;
+  /* Prevent layout shifts */
+  contain: layout;
 }
 
 @media (min-width: 768px) {
   .homepage-template .col-md-9 main {
-    min-height: 800px;
+    min-height: 1200px;
+  }
+}
+
+@media (min-width: 960px) {
+  .homepage-template .col-md-9 main {
+    min-height: 1500px;
   }
 }
 

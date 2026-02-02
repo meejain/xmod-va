@@ -108,7 +108,14 @@ main {
 }
 
 header {
-  min-height: 0;
+  /* Reserve space for header to prevent CLS */
+  min-height: 180px;
+}
+
+@media (min-width: 960px) {
+  header {
+    min-height: 220px;
+  }
 }
 
 header .header,
@@ -127,16 +134,16 @@ body.homepage {
 }
 
 body.homepage > *:not(header):not(footer) {
-  /* Use opacity + pointer-events instead of visibility to prevent layout shifts */
-  opacity: 0;
+  /* Use visibility hidden to completely remove from layout until template is loaded */
+  visibility: hidden;
+  position: absolute;
   pointer-events: none;
 }
 
 body.homepage.template-loaded > * {
-  opacity: 1;
+  visibility: visible;
+  position: static;
   pointer-events: auto;
-  /* Smooth fade-in after template is loaded */
-  transition: opacity 0.1s ease-in;
 }
 
 h1,

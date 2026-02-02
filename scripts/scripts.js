@@ -113,41 +113,33 @@ export function decorateMain(main) {
  */
 export async function loadTemplate(doc, templateName) {
   try {
-    const cssLoaded = new Promise((resolve) => {
-      loadCSS(
-        `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`,
-      )
-        .then(resolve)
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(
-            `failed to load css module for ${templateName}`,
-            err.target?.href,
-          );
-          resolve();
-        });
+    // CSS should already be loaded in loadEager for templates
+    // Just ensure it's there, but don't wait if already loaded
+    loadCSS(
+      `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`,
+    ).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.error(
+        `failed to load css module for ${templateName}`,
+        err.target?.href,
+      );
     });
 
-    const decorationComplete = new Promise((resolve) => {
-      (async () => {
-        try {
-          const mod = await import(
-            `../templates/${templateName}/${templateName}.js`
-          );
-          if (mod.default) {
-            await mod.default(doc);
-          }
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(`failed to load module for ${templateName}`, error);
-        }
-        resolve();
-      })();
-    });
-
+    // Add template class BEFORE running template JS
     document.body.classList.add(`${templateName}-template`);
 
-    await Promise.all([cssLoaded, decorationComplete]);
+    // Run template JS to restructure DOM
+    try {
+      const mod = await import(
+        `../templates/${templateName}/${templateName}.js`
+      );
+      if (mod.default) {
+        await mod.default(doc);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(`failed to load module for ${templateName}`, error);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(`failed to load template ${templateName}`, error);
@@ -164,7 +156,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   
-  // CRITICAL CLS FIX: For template pages, load template CSS first (before showing content)
+  // CRITICAL CLS FIX: For template pages, load template CSS AND run template BEFORE showing content
   if (templateName && main) {
     // Load template CSS immediately to prevent unstyled content flash
     const templateCSSPromise = loadCSS(
@@ -172,17 +164,20 @@ async function loadEager(doc) {
     );
     
     decorateMain(main);
-    document.body.classList.add('appear');
     
-    // Wait for template CSS before loading sections
+    // Wait for template CSS to load
     await templateCSSPromise;
     
-    // Load first section with LCP image
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
-    
-    // Load ALL sections before running template
+    // Load ALL sections before running template (blocks need to be loaded for template to work)
     await loadSections(main);
+    
+    // Run template BEFORE showing content to prevent layout shifts
     await loadTemplate(doc, templateName);
+    
+    // NOW show the content after template has restructured DOM
+    document.body.classList.add('appear');
+    
+    // LCP is already loaded in loadSections
   } else if (main) {
     // Non-template pages: normal flow
     decorateMain(main);
